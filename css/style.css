@@ -1,3 +1,12 @@
+:root {
+  touch-action: pan-x pan-y;
+  height: 100%
+}
+
+body {
+  overflow: hidden;
+}
+
 canvas {
   position: fixed;
   top: 0;
