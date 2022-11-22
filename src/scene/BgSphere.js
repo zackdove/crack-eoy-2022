@@ -47,7 +47,7 @@ export default class BgSphere extends THREE.Group {
 
   resize({ width, height, pixelRatio }) {
     if (height > width) {
-      this.plane.rotation.y = Math.PI / 2;
+      this.plane.rotation.x = Math.PI / 2;
       // this.plane.scale.x = 1;
       // this.plane.scale.y = width / height;
 
