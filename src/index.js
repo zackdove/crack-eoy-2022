@@ -23,14 +23,14 @@ const canvas = document.querySelector('#app')
 const webgl = new WebGLApp({
   canvas,
   // set the scene background color
-  background: '#111',
-  backgroundAlpha: 1,
+  background: '#00ff00',
+  backgroundAlpha: 0.5,
   // enable postprocessing
   postprocessing: true,
   // show the fps counter from stats.js
   showFps: window.DEBUG,
   // enable OrbitControls
-  orbitControls: window.DEBUG,
+  orbitControls: false,
   // Add the controls pane inputs
 
   hideControls: true,
@@ -58,6 +58,10 @@ const params = {
     maxDegreesHorizontal: 5,
     maxDegreesVertical: 5,
   },
+  mobileControls: {
+    velocityFactor: 0.0002,
+    velocityDecay: 0.1,
+  },
 }
 webgl.params = params;
 
@@ -68,14 +72,24 @@ webgl.canvas.style.visibility = 'hidden'
 assets.load({ renderer: webgl.renderer }).then(() => {
   // add any "WebGL components" here...
   // append them to the scene so you can
+
+  webgl.scene.suzanne = new Suzanne(webgl)
+  webgl.scene.add(webgl.scene.suzanne)
+  webgl.scene.add(webgl.camera)
+
   // use them from other components easily
   webgl.scene.rotationGroup = new THREE.Group();
   webgl.scene.bgPlane = new BgPlane(webgl)
   webgl.scene.bgPlane.position.set(0, 0, -1)
   webgl.camera.position.set(0, 0, 0)
+  // webgl.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
   webgl.scene.add(webgl.scene.rotationGroup)
   webgl.scene.rotationGroup.add(webgl.scene.bgPlane)
+
+  webgl.scene.background = null;
+
+  webgl.scene.suzanne.position.set(0, 0, -2)
 
   webgl.scene.controlService = new ControlService(webgl);
   webgl.scene.add(webgl.scene.controlService)
@@ -109,5 +123,6 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   webgl.canvas.style.visibility = ''
 
   // start animation loop
+  console.log('render start')
   webgl.start()
 })

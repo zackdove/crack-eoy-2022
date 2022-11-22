@@ -16,7 +16,7 @@ export default class ControlService extends THREE.Group {
     }
     onPointerDown(event, { x, y }) {
         console.log('pointer down')
-        if (this.isTouch) {
+        if (this.webgl.isTouch) {
             this.prevMovement.x = null;
             this.prevMovement.y = null;
         }
@@ -24,7 +24,7 @@ export default class ControlService extends THREE.Group {
 
 
     onPointerMove(event, { x, y }) {
-        if (this.isTouch) {
+        if (this.webgl.isTouch) {
             if (this.prevMovement.x && this.prevMovement.y) {
                 const deltaX = x - this.prevMovement.x;
                 const deltaY = y - this.prevMovement.y;
@@ -44,7 +44,7 @@ export default class ControlService extends THREE.Group {
     }
 
     onPointerUp(event, { x, y }) {
-        if (this.isTouch) {
+        if (this.webgl.isTouch) {
 
         }
     }
@@ -52,22 +52,21 @@ export default class ControlService extends THREE.Group {
 
     update(dt, time) {
         if (!this.webgl.debugCameraMode) {
-            if (this.isTouch) {
-                this.webgl.scene.rotationGroup.rotation.x -= this.velocity.y * this.webgl.params.mobileControls.this.velocityFactor;
-                if (this.webgl.scene.rotationGroup.rotation.x > this.webgl.params.controls.maxDegreesVertical * Math.PI / 90) {
-                    this.webgl.scene.rotationGroup.rotation.x = this.webgl.params.controls.maxDegreesVertical * Math.PI / 90;
-                } else if (this.webgl.scene.rotationGroup.rotation.x < -this.webgl.params.controls.maxDegreesVertical * Math.PI / 90) {
-                    this.webgl.scene.rotationGroup.rotation.x = -this.webgl.params.controls.maxDegreesVertical * Math.PI / 90;
+            if (this.webgl.isTouch) {
+                this.webgl.scene.rotationGroup.rotation.x -= this.velocity.y * this.webgl.params.mobileControls.velocityFactor;
+                if (this.webgl.scene.rotationGroup.rotation.x > this.webgl.params.controls.maxDegreesVertical * Math.PI / 180) {
+                    this.webgl.scene.rotationGroup.rotation.x = this.webgl.params.controls.maxDegreesVertical * Math.PI / 180;
+                } else if (this.webgl.scene.rotationGroup.rotation.x < -this.webgl.params.controls.maxDegreesVertical * Math.PI / 180) {
+                    this.webgl.scene.rotationGroup.rotation.x = -this.webgl.params.controls.maxDegreesVertical * Math.PI / 180;
                 }
-                this.webgl.scene.rotationGroup.rotation.y -= this.velocity.x * this.webgl.params.mobileControls.this.velocityFactor;
-                if (this.webgl.scene.rotationGroup.rotation.y > this.webgl.params.controls.maxDegreesHorizontal * Math.PI / 90) {
-                    this.webgl.scene.rotationGroup.rotation.y = this.webgl.params.controls.maxDegreesHorizontal * Math.PI / 90;
-                } else if (this.webgl.scene.rotationGroup.rotation.y < -this.webgl.params.controls.maxDegreesHorizontal * Math.PI / 90) {
-                    this.webgl.scene.rotationGroup.rotation.y = -this.webgl.params.controls.maxDegreesHorizontal * Math.PI / 90;
+                this.webgl.scene.rotationGroup.rotation.y -= this.velocity.x * this.webgl.params.mobileControls.velocityFactor;
+                if (this.webgl.scene.rotationGroup.rotation.y > this.webgl.params.controls.maxDegreesHorizontal * Math.PI / 180) {
+                    this.webgl.scene.rotationGroup.rotation.y = this.webgl.params.controls.maxDegreesHorizontal * Math.PI / 180;
+                } else if (this.webgl.scene.rotationGroup.rotation.y < -this.webgl.params.controls.maxDegreesHorizontal * Math.PI / 180) {
+                    this.webgl.scene.rotationGroup.rotation.y = -this.webgl.params.controls.maxDegreesHorizontal * Math.PI / 180;
                 }
-                this.webgl.pickingScene.rotationGroup.rotation.copy(this.webgl.scene.rotationGroup.rotation)
-                this.velocity.x *= 1 - this.webgl.params.mobileControls.this.velocityDecay;
-                this.velocity.y *= 1 - this.webgl.params.mobileControls.this.velocityDecay;
+                this.velocity.x *= 1 - this.webgl.params.mobileControls.velocityDecay;
+                this.velocity.y *= 1 - this.webgl.params.mobileControls.velocityDecay;
             } else {
                 this.webgl.scene.rotationGroup.rotation.y += (this.cameraTarget.y - this.webgl.scene.rotationGroup.rotation.y) * this.webgl.params.controls.damping;
                 this.webgl.scene.rotationGroup.rotation.x += (this.cameraTarget.x - this.webgl.scene.rotationGroup.rotation.x) * this.webgl.params.controls.damping;
@@ -75,7 +74,7 @@ export default class ControlService extends THREE.Group {
             }
 
         } else {
-            orbitControls.update();
+
         }
     }
 }
