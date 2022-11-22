@@ -9,6 +9,7 @@ import * as THREE from 'three'
 import getDistortionShaderDefinition from './scene/Fisheye'
 import { FisheyePass } from './scene/FisheyePass'
 import ControlService from './scene/ControlService'
+import BgSphere from './scene/BgSphere'
 
 // true if the url has the `?debug` parameter, otherwise false
 window.DEBUG = window.location.search.includes('debug')
@@ -81,11 +82,14 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   webgl.scene.rotationGroup = new THREE.Group();
   webgl.scene.bgPlane = new BgPlane(webgl)
   webgl.scene.bgPlane.position.set(0, 0, -1)
+  webgl.scene.bgSphere = new BgSphere(webgl)
+  webgl.scene.bgSphere.position.set(0, 0, 0)
   webgl.camera.position.set(0, 0, 0)
   // webgl.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
   webgl.scene.add(webgl.scene.rotationGroup)
-  webgl.scene.rotationGroup.add(webgl.scene.bgPlane)
+  // webgl.scene.rotationGroup.add(webgl.scene.bgPlane)
+  webgl.scene.rotationGroup.add(webgl.scene.bgSphere)
 
   webgl.scene.background = null;
 
