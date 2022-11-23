@@ -30,8 +30,6 @@ export default class BgSphere extends THREE.Group {
       map: map,
       side: THREE.DoubleSide,
     })
-    material.map.wrapS = THREE.RepeatWrapping;
-    material.map.wrapT = THREE.RepeatWrapping;
     this.plane = new THREE.Mesh(geometry, material)
 
     // add it to the group,
