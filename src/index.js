@@ -56,8 +56,8 @@ const params = {
   },
   controls: {
     damping: 0.13,
-    maxDegreesHorizontal: 5,
-    maxDegreesVertical: 5,
+    maxDegreesHorizontal: 40,
+    maxDegreesVertical: 20,
   },
   mobileControls: {
     velocityFactor: 0.0002,
