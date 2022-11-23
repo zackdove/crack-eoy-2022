@@ -1,3 +1,36 @@
+@font-face {
+  font-family: 'Eugenia Headline Web';
+  src: url('../assets/fonts/Eugenia/Eugenia-HeadlineRegular-Web.woff2') format('woff2'),
+    url('../assets/fonts/Eugenia/Eugenia-HeadlineRegular-Web.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'PBNeueBit-Bold';
+  src: url('../assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.eot');
+  src: url('../assets/fonts/simplon/SimplonBPMono-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff2') format('woff2'),
+    url('../assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff') format('woff'),
+    url('../assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.eugenia {
+  font-family: 'Eugenia Headline Web';
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+.pbNeueBit {
+  font-family: 'PBNeueBit-Bold';
+  font-size: 1.4em;
+}
+
 :root {
   touch-action: pan-x pan-y;
   height: 100%
@@ -12,4 +45,47 @@ canvas {
   top: 0;
   left: 0;
   outline: none;
+}
+
+.banner {
+  position: absolute;
+  font-size: 85px;
+  overflow: hidden;
+  --offset: 20vw;
+  --move-initial: calc(-25% + var(--offset));
+  --move-final: calc(-75% + var(--offset));
+  pointer-events: none;
+}
+
+.bannerInner {
+  width: max-content;
+  display: flex;
+  position: relative;
+  transform: translate3d(var(--move-initial), 0, 0);
+  animation: marquee 7s linear infinite;
+  /* animation-play-state: paused; */
+}
+
+.banner span {}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(var(--move-initial), 0, 0);
+  }
+
+  100% {
+    transform: translate3d(var(--move-final), 0, 0);
+  }
+}
+
+#topBanner {
+  top: 0;
+}
+
+#bottomBanner {
+  bottom: 0;
+}
+
+#bottomBanner>.bannerInner {
+  animation-direction: reverse;
 }
