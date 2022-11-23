@@ -4,12 +4,31 @@ import assets from '../utils/AssetManager'
 
 
 
-export default class InteractiveDot extends THREE.Mesh {
+export default class InteractiveDot extends THREE.Group {
     isBeingRaycast = false;
     constructor(webgl, geometry, material, index,) {
-        super(geometry, material)
+        super();
         this.webgl = webgl
         this.raycaster = new THREE.Raycaster()
+
+        // this.sphere = new THREE.Mesh(geometry, material);
+        // material.color = new THREE.Color('green')
+        // this.add(this.sphere)
+        const plusObject = new Text();
+        this.add(plusObject);
+        this.plusObject = plusObject;
+        plusObject.handleRaycast = () => this.handleRaycast();
+        plusObject.color = 0x000000;
+        plusObject.anchorX = 'center';
+        plusObject.anchorY = 'middle';
+        plusObject.text = '+'
+        plusObject.font = 'assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff'
+        plusObject.fontSize = 0.325 * 1.6;
+        plusObject.position.y = +  0.325 * 0.1;
+        // textObject.position.z = 0.1;
+        // textObject.position.x = 0.2;
+
+
         const textObject = new Text()
         this.add(textObject);
         this.textObject = textObject;

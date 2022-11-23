@@ -32,7 +32,7 @@ export default class InteractiveDots extends THREE.Group {
             y: 0,
         }
         this.overlay = document.getElementById('overlay');
-        const sphereGeo = new THREE.SphereGeometry(0.1);
+        const sphereGeo = new THREE.SphereGeometry(0.01);
         const material = new THREE.MeshBasicMaterial({ color: new THREE.Color('black') });
         this.material = material;
         this.currentDot;
@@ -138,6 +138,7 @@ export default class InteractiveDots extends THREE.Group {
                         if (value === this.currentDot) {
                             value.visible = true;
                             value.textObject.color = 0xffffff;
+                            value.plusObject.color = 0xffffff;
                             if (this.webgl.isTouch) {
                                 console.log(value)
                                 value.tapToView.visible = true;
@@ -167,9 +168,10 @@ export default class InteractiveDots extends THREE.Group {
             }
             this.material.color = black;
             for (const [key, value] of Object.entries(this.webgl.scene.interactiveDots.idToObject)) {
-                if (value.isMesh) {
+                if (value.textObject) {
                     value.visible = true;
                     value.textObject.color = 0x000000;
+                    value.plusObject.color = 0x000000;
                     if (this.webgl.isTouch && value.tapToView) {
                         value.tapToView.visible = false;
                     }
