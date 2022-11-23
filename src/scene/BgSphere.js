@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import assets from '../utils/AssetManager'
 
 const gradientKey = assets.queue({
-  url: 'assets/images/gradient23Nov.jpeg',
+  url: 'assets/images/gradientBg.jpeg',
   type: 'texture',
 })
 

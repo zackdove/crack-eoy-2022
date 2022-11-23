@@ -10,6 +10,7 @@ import getDistortionShaderDefinition from './scene/Fisheye'
 import { FisheyePass } from './scene/FisheyePass'
 import ControlService from './scene/ControlService'
 import BgSphere from './scene/BgSphere'
+import InteractiveDots from './scene/InteractiveDots'
 
 // true if the url has the `?debug` parameter, otherwise false
 window.DEBUG = window.location.search.includes('debug')
@@ -56,12 +57,18 @@ const params = {
   },
   controls: {
     damping: 0.13,
-    maxDegreesHorizontal: 40,
-    maxDegreesVertical: 20,
+    maxDegreesHorizontal: 5,
+    maxDegreesVertical: 5,
   },
   mobileControls: {
     velocityFactor: 0.0002,
     velocityDecay: 0.1,
+  },
+  grid: {
+    // widthSegments: 24,
+    // verticalSegments: 24,
+    widthSegments: 40,
+    verticalSegments: 31,
   },
 }
 webgl.params = params;
@@ -73,6 +80,22 @@ webgl.canvas.style.visibility = 'hidden'
 assets.load({ renderer: webgl.renderer }).then(() => {
   // add any "WebGL components" here...
   // append them to the scene so you can
+
+  function makeVisible() {
+    webgl.canvas.style.visibility = ''
+    webgl.canvas.classList.remove('hide')
+    document.body.style.visibility = 'visible';
+  }
+
+  let textsLoaded = 0;
+
+  webgl.increaseTextsLoaded = () => {
+    textsLoaded++;
+    console.log(textsLoaded)
+    if (textsLoaded >= gridConfig.projects.length) {
+      makeVisible();
+    }
+  }
 
   webgl.scene.suzanne = new Suzanne(webgl)
   webgl.scene.add(webgl.scene.suzanne)
@@ -90,6 +113,9 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   webgl.scene.add(webgl.scene.rotationGroup)
   // webgl.scene.rotationGroup.add(webgl.scene.bgPlane)
   webgl.scene.rotationGroup.add(webgl.scene.bgSphere)
+
+  webgl.scene.interactiveDots = new InteractiveDots(webgl, { widthSegments: params.grid.widthSegments, heightSegments: params.grid.verticalSegments })
+  webgl.scene.rotationGroup.add(webgl.scene.interactiveDots)
 
   webgl.scene.background = null;
 
