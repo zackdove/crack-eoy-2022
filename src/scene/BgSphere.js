@@ -6,6 +6,7 @@ const gradientKey = assets.queue({
   type: 'texture',
 })
 
+
 export default class BgSphere extends THREE.Group {
   constructor(webgl, options = {}) {
     super(options)
@@ -20,10 +21,16 @@ export default class BgSphere extends THREE.Group {
     const map = assets.get(gradientKey);
     map.wrapS = THREE.MirroredRepeatWrapping;
     map.wrapT = THREE.MirroredRepeatWrapping;
-    map.repeat.set(5, 5);
-    map.offset.x = 0.;
-    map.offset.y = 0.0;
+    map.repeat.set(8, 4);
+    map.offset.x = 0.0;
+    map.offset.y = 0.5;
     map.needsUpdate = true;
+    map.encoding = THREE.LinearEncoding;
+    this.map = map;
+
+
+
+
 
     const material = new THREE.MeshBasicMaterial({
       color,
@@ -55,4 +62,6 @@ export default class BgSphere extends THREE.Group {
     }
 
   }
+
+
 }

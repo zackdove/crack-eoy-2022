@@ -79,6 +79,8 @@ export default class InteractiveDots extends THREE.Group {
         }
 
 
+
+
     }
 
     handleMove(event, { x, y }) {
@@ -126,7 +128,7 @@ export default class InteractiveDots extends THREE.Group {
 
                 this.showTimeout = setTimeout(() => {
                     // console.log(this);
-
+                    this.webgl.scene.artistSphere.visible = true;
                     // this.webgl.scene.videoPlane.visible = true;
                     this.showTimeout = null;
                     // this.webgl.scene.dottedSphere.sphere.material.uniforms.color.value = white;
@@ -162,9 +164,7 @@ export default class InteractiveDots extends THREE.Group {
             clearTimeout(this.showTimeout);
             this.showTimeout = null;
             if (this.currentDot) {
-                this.currentDot.transitionToTitleIndex = 0;
-                this.currentDot.transitionToTitle();
-                this.currentDot = null;
+
             }
             this.material.color = black;
             for (const [key, value] of Object.entries(this.webgl.scene.interactiveDots.idToObject)) {
@@ -181,7 +181,7 @@ export default class InteractiveDots extends THREE.Group {
                 }
             }
             document.body.style.cursor = 'default'
-            // this.webgl.scene.videoPlane.visible = false;
+            this.webgl.scene.artistSphere.visible = false;
         }
     }
 

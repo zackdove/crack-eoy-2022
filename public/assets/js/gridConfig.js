@@ -10,6 +10,7 @@ const gridConfig = {
             textureType: 'video',
             textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
             link: '/examplelink',
+            textureKey: 'sudan'
         },
         {
             title: 'TOP TRACKS 2022',
@@ -21,6 +22,7 @@ const gridConfig = {
             textureType: 'video',
             textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
             link: '/examplelink',
+            textureKey: 'lsdxoxo'
         },
         {
             title: 'TOP FILMS 2022',
@@ -32,6 +34,7 @@ const gridConfig = {
             textureType: 'video',
             textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
             link: '/examplelink',
+            textureKey: 'arca',
         },
 
     ]

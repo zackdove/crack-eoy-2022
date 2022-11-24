@@ -53,7 +53,7 @@ export default class WebGLApp {
     near = 0.01,
     far = 100,
     gamma = true,
-    physicallyCorrectLights = true,
+    physicallyCorrectLights = false,
     ...options
   } = {}) {
     this.renderer = new THREE.WebGLRenderer({

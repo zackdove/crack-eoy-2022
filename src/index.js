@@ -11,6 +11,8 @@ import { FisheyePass } from './scene/FisheyePass'
 import ControlService from './scene/ControlService'
 import BgSphere from './scene/BgSphere'
 import InteractiveDots from './scene/InteractiveDots'
+import MenuSphere from './scene/MenuSphere'
+import ArtistSphere from './scene/ArtistSphere'
 
 // true if the url has the `?debug` parameter, otherwise false
 window.DEBUG = window.location.search.includes('debug')
@@ -57,7 +59,7 @@ const params = {
   },
   controls: {
     damping: 0.13,
-    maxDegreesHorizontal: 5,
+    maxDegreesHorizontal: 10,
     maxDegreesVertical: 5,
   },
   mobileControls: {
@@ -107,6 +109,11 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   webgl.scene.bgPlane.position.set(0, 0, -1)
   webgl.scene.bgSphere = new BgSphere(webgl)
   webgl.scene.bgSphere.position.set(0, 0, 0)
+
+  webgl.scene.artistSphere = new ArtistSphere(webgl)
+  webgl.scene.artistSphere.position.set(0, 0, 0)
+
+
   webgl.camera.position.set(0, 0, 0)
   // webgl.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
@@ -114,8 +121,14 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   // webgl.scene.rotationGroup.add(webgl.scene.bgPlane)
   webgl.scene.rotationGroup.add(webgl.scene.bgSphere)
 
+  webgl.scene.rotationGroup.add(webgl.scene.artistSphere)
+
   webgl.scene.interactiveDots = new InteractiveDots(webgl, { widthSegments: params.grid.widthSegments, heightSegments: params.grid.verticalSegments })
   webgl.scene.rotationGroup.add(webgl.scene.interactiveDots)
+
+  webgl.scene.menuSphere = new MenuSphere(webgl);
+  webgl.scene.rotationGroup.add(webgl.scene.menuSphere)
+  webgl.scene.menuSphere.position.set(0, 0, -8);
 
   webgl.scene.background = null;
 
