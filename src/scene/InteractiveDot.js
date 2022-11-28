@@ -25,6 +25,8 @@ export default class InteractiveDot extends THREE.Group {
         plusObject.font = 'assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff'
         plusObject.fontSize = 0.325 * 1.6;
         plusObject.position.y = +  0.325 * 0.1;
+        plusObject.visible = true;
+        plusObject.sync();
         // textObject.position.z = 0.1;
         // textObject.position.x = 0.2;
 
@@ -36,48 +38,44 @@ export default class InteractiveDot extends THREE.Group {
         this.index = index;
         this.isDot = true;
         this.title = gridConfig.projects[index].title.split('');
-        this.coordinates = gridConfig.projects[index].coordinates.split('');
-        this.currentString = [...this.title];
-        this.stringLength = Math.max(this.coordinates.length, this.title.length)
-        this.transitionToCoordsTimeout = null;
-        this.transitionToTitleTimeout = null;
-        this.transitionToPartCoordsTimeout = null;
-        this.transitionToCoordsIndex = 0;
-        this.isTitle = true;
-        this.isCoords = false;
-        this.transitionToTitleIndex = 0;
-        this.transitioningToCoords = false;
-        this.transitioningToTitle = false;
         this.textureKey = gridConfig.projects[index].textureKey;
         textObject.text = this.title.join('');
         textObject.font = 'assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff'
         textObject.fontSize = 0.325;
+
+        textObject.handleRaycast = () => this.handleRaycast();
+
+
+        this.layers.enable(1)
         if (webgl.isTouch) {
             // textObject.fontSize = 0.012;
+            this.textObject.layers.enable(1);
         }
-        textObject.handleRaycast = () => this.handleRaycast();
+
         textObject.color = 0x000000;
         textObject.anchorX = 'left';
         textObject.anchorY = 'middle';
+        textObject.visible = false;
         // textObject.position.z = 0.1;
         textObject.position.x = 0.2;
         // textObject.position.y = -0.01;
         if (webgl.isTouch) {
-            textObject.maxWidth = 0.12;
             const tapToView = new Text();
             tapToView.text = 'Tap to view';
             tapToView.handleRaycast = () => this.handleRaycast();
             tapToView.font = 'assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff'
-            tapToView.fontSize = 0.01;
-            tapToView.color = 0xc9c9c9;
+            tapToView.fontSize = 0.25;
+            tapToView.color = 0xffffff;
             tapToView.anchorX = 'left';
-            tapToView.anchorY = 'center';
-            tapToView.position.z = 0.1;
-            tapToView.position.x = 0.01;
-            tapToView.position.y = -0.036;
-            tapToView.visible = false;
+            tapToView.anchorY = 'middle';
+            tapToView.position.x = 0.225;
+            tapToView.position.y = -0.25
+            tapToView.visible = true;
+            textObject.visible = true;
             tapToView.sync();
+
             this.tapToView = tapToView
+            this.tapToView.layers.enable(1);
             this.add(tapToView)
         }
         // this.lookAt(webgl.camera.position)

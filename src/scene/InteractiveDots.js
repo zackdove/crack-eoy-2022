@@ -32,7 +32,7 @@ export default class InteractiveDots extends THREE.Group {
             y: 0,
         }
         this.overlay = document.getElementById('overlay');
-        const sphereGeo = new THREE.SphereGeometry(0.01);
+        const sphereGeo = new THREE.SphereGeometry(0.05);
         const material = new THREE.MeshBasicMaterial({ color: new THREE.Color('black') });
         this.material = material;
         this.currentDot;
@@ -72,6 +72,7 @@ export default class InteractiveDots extends THREE.Group {
             const pickingCube = new THREE.Mesh(sphereGeo, whiteMat);
             pickingCube.scale.setScalar(3);
             sphere.add(pickingCube)
+            pickingCube.layers.enable(1);
             // this.webgl.scene.rotationGroup.add(pickingCube);
             // pickingCube.position.copy(sphere.position);
             pickingCube.visible = false;
@@ -118,6 +119,7 @@ export default class InteractiveDots extends THREE.Group {
         const newCoords = new THREE.Vector2(Xd.x, Xd.y)
         const raycaster = new THREE.Raycaster()
         raycaster.setFromCamera(newCoords, this.webgl.camera)
+        raycaster.layers.set(1);
         const hits = raycaster.intersectObject(this, true)
         // console.log(hits.length > 0 ? `Hit ${hits[0].object.name}!` : 'No hit')
         if (hits.length > 0) {
@@ -139,6 +141,7 @@ export default class InteractiveDots extends THREE.Group {
                     for (const [key, value] of Object.entries(this.idToObject)) {
                         if (value === this.currentDot) {
                             value.visible = true;
+                            value.textObject.visible = true;
                             value.textObject.color = 0xffffff;
                             value.plusObject.color = 0xffffff;
                             if (this.webgl.isTouch) {
@@ -161,6 +164,7 @@ export default class InteractiveDots extends THREE.Group {
             }
 
         } else {
+            console.log('called he')
             clearTimeout(this.showTimeout);
             this.showTimeout = null;
             if (this.currentDot) {
@@ -169,14 +173,18 @@ export default class InteractiveDots extends THREE.Group {
             this.material.color = black;
             for (const [key, value] of Object.entries(this.webgl.scene.interactiveDots.idToObject)) {
                 if (value.textObject) {
-                    value.visible = true;
                     value.textObject.color = 0x000000;
                     value.plusObject.color = 0x000000;
-                    if (this.webgl.isTouch && value.tapToView) {
-                        value.tapToView.visible = false;
-                    }
-                    if (value.isBeingRaycast) {
-                        value.isBeingRaycast = false;
+                    if (!this.webgl.isTouch) {
+                        value.visible = true;
+                        value.textObject.visible = false;
+                        if (value.isBeingRaycast) {
+                            value.isBeingRaycast = false;
+                        }
+                    } else {
+                        if (value.tapToView) {
+                            value.tapToView.visible = false;
+                        }
                     }
                 }
             }

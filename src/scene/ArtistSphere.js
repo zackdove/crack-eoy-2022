@@ -24,6 +24,8 @@ export default class ArtistSphere extends THREE.Group {
     this.webgl = webgl
     this.options = options
 
+
+
     // destructure and default values like you do in React
     const color = 0xffffff;
 
@@ -52,15 +54,15 @@ export default class ArtistSphere extends THREE.Group {
     const arcaMap = assets.get(arcaKey);
     arcaMap.wrapS = THREE.MirroredRepeatWrapping;
     arcaMap.wrapT = THREE.MirroredRepeatWrapping;
-    arcaMap.repeat.set(7, 5);
-    arcaMap.offset.x = 0.0;
+    arcaMap.repeat.set(8, 5);
+    arcaMap.offset.x = 0.5;
     arcaMap.offset.y = 0.0;
     arcaMap.needsUpdate = true;
     arcaMap.encoding = THREE.LinearEncoding;
     this.arcaMap = arcaMap;
 
 
-
+    this.visible = false;
 
     const material = new THREE.MeshBasicMaterial({
       color,
