@@ -13,6 +13,7 @@ import BgSphere from './scene/BgSphere'
 import InteractiveDots from './scene/InteractiveDots'
 import MenuSphere from './scene/MenuSphere'
 import ArtistSphere from './scene/ArtistSphere'
+import initialiseMenu from './scene/HandleMenu'
 
 // true if the url has the `?debug` parameter, otherwise false
 window.DEBUG = window.location.search.includes('debug')
@@ -78,6 +79,8 @@ webgl.params = params;
 // hide canvas
 webgl.canvas.style.visibility = 'hidden'
 
+initialiseMenu(webgl);
+
 // load any queued assets
 assets.load({ renderer: webgl.renderer }).then(() => {
   // add any "WebGL components" here...
@@ -126,9 +129,9 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   webgl.scene.interactiveDots = new InteractiveDots(webgl, { widthSegments: params.grid.widthSegments, heightSegments: params.grid.verticalSegments })
   webgl.scene.rotationGroup.add(webgl.scene.interactiveDots)
 
-  webgl.scene.menuSphere = new MenuSphere(webgl);
-  webgl.scene.add(webgl.scene.menuSphere)
-  webgl.scene.menuSphere.position.set(0, 0, -8);
+  // webgl.scene.menuSphere = new MenuSphere(webgl);
+  // webgl.scene.add(webgl.scene.menuSphere)
+  // webgl.scene.menuSphere.position.set(0, 0, -8);
 
   webgl.scene.background = null;
 
