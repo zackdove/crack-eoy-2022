@@ -1,3 +1,5 @@
+// Pls dont put more than six
+
 const gridConfig = {
     projects: [
         {
@@ -10,7 +12,11 @@ const gridConfig = {
             textureType: 'video',
             textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
             link: '/examplelink',
-            textureKey: 'sudan'
+            textureKey: 'sudan',
+            enabled: true,
+            textures: [
+                '/assets/images/sudanArchives.jpeg',
+            ],
         },
         {
             title: 'TOP TRACKS 2022',
@@ -22,7 +28,11 @@ const gridConfig = {
             textureType: 'video',
             textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
             link: '/examplelink',
-            textureKey: 'lsdxoxo'
+            textureKey: 'lsdxoxo',
+            enabled: true,
+            textures: [
+                '/assets/images/sudanArchives.jpeg',
+            ],
         },
         {
             title: 'TOP FILMS 2022',
@@ -35,7 +45,64 @@ const gridConfig = {
             textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
             link: '/examplelink',
             textureKey: 'arca',
+            enabled: true,
+            textures: [
+                '/assets/images/sudanArchives.jpeg',
+            ],
         },
+        {
+            title: 'TOP FILMS 2022',
+            coordinates: `41°24'12.2" N 2°10'26.5"`,
+            position: {
+                x: -2,
+                y: 2,
+            },
+            textureType: 'video',
+            textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
+            link: '/examplelink',
+            textureKey: 'arca',
+            enabled: true,
+            textures: [
+                '/assets/images/sudanArchives.jpeg',
+            ],
+            textures: [
+                '/assets/images/sudanArchives.jpeg',
+            ],
+        },
+        {
+            title: 'TOP FILMS 2022',
+            coordinates: `41°24'12.2" N 2°10'26.5"`,
+            position: {
+                x: -2,
+                y: -1,
+            },
+            textureType: 'video',
+            textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
+            link: '/examplelink',
+            textureKey: 'arca',
+            enabled: true,
+            textures: [
+                '/assets/images/sudanArchives.jpeg',
+            ],
+        },
+        {
+            title: 'TOP FILMS 2022',
+            coordinates: `41°24'12.2" N 2°10'26.5"`,
+            position: {
+                x: 2,
+                y: 0,
+            },
+            textureType: 'video',
+            textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
+            link: '/examplelink',
+            textureKey: 'arca',
+            enabled: false,
+            textures: [
+                '/assets/images/sudanArchives.jpeg',
+            ],
+        },
+
+
 
     ]
 }
