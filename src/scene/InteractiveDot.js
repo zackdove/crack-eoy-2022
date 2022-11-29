@@ -37,6 +37,7 @@ export default class InteractiveDot extends THREE.Group {
         // Can remove this once dots = length
         this.index = index;
         this.isDot = true;
+        this.project = gridConfig.projects[index];
         this.title = gridConfig.projects[index].title.split('');
         this.textureKey = gridConfig.projects[index].textureKey;
         textObject.text = this.title.join('');
@@ -94,7 +95,7 @@ export default class InteractiveDot extends THREE.Group {
 
         // this.textObject.sync();
         this.isBeingRaycast = true;
-        this.webgl.scene.artistSphere.changeTo(this.textureKey);
+        this.webgl.scene.artistSphere.changeTo(this.project);
         // this.webgl.scene.videoPlane.changeTo(this.index);
     }
     handleClick() {

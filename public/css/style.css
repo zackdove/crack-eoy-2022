@@ -149,6 +149,18 @@ a {
   text-align: center;
   pointer-events: auto;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.card.disabled {
+  background-color: #adadad;
+  color: #dfdfdf;
+  cursor: not-allowed;
+}
+
+.card.disabled:hover {
+  background-color: #adadad;
+  color: #dfdfdf;
 }
 
 #cardContainer.hidden .card {
@@ -158,6 +170,8 @@ a {
 #cardContainerContainer.hidden {
   pointer-events: none;
 }
+
+@keyframes pulsing {}
 
 
 #menuButton {
@@ -176,7 +190,6 @@ a {
   padding: 0;
   margin: 0;
   cursor: pointer;
-
 }
 
 #menuButton.inMenu {
@@ -224,7 +237,7 @@ a {
     transition: background-color 0.3s, color 0.3s, opacity 0.3s, transform 0.4s;
   }
 
-  #cardContainer.hidden>a>.card {
+  #cardContainer.hidden>.card {
     opacity: 0;
   }
 
@@ -233,49 +246,49 @@ a {
     background-color: #ECFF77;
   }
 
-  #cardContainer>a:nth-child(1)>.card {
+  #cardContainer>.card:nth-child(1) {
     transition-delay: 0s, 0s, 0s, 0s;
   }
 
-  #cardContainer>a:nth-child(2)>.card {
+  #cardContainer>.card:nth-child(2) {
     transition-delay: 0s, 0s, 0.1s, 0.1s;
   }
 
-  #cardContainer>a:nth-child(3)>.card {
+  #cardContainer>.card:nth-child(3) {
     transition-delay: 0s, 0s, 0.2s, 0.2s
   }
 
-  #cardContainer>a:nth-child(4)>.card {
+  #cardContainer>.card:nth-child(4) {
     transition-delay: 0s, 0s, 0.3s, 0.3s;
   }
 
-  #cardContainer>a:nth-child(5)>.card {
+  #cardContainer>.card:nth-child(5) {
     transition-delay: 0s, 0s, 0.4s, 0.4s;
   }
 
-  #cardContainer>a:nth-child(6)>.card {
+  #cardContainer>.card:nth-child(6) {
     transition-delay: 0s, 0s, 0.5s, 0.5s;
   }
 
-  #cardContainer.hidden>a>.card {
+  #cardContainer.hidden>.card {
     transform: translateY(100px);
   }
 
-  #cardContainer.hidden>a:nth-child(1)>.card {
+  #cardContainer.hidden>.card:nth-child(1) {
     transform: translateY(-100px);
   }
 
-  #cardContainer.hidden>a:nth-child(2)>.card {
+  #cardContainer.hidden>.card:nth-child(2) {
     transform: translateY(-100px);
   }
 
-  #cardContainer.hidden>a:nth-child(3)>.card {
+  #cardContainer.hidden>.card:nth-child(3) {
     transform: translateY(-100px);
   }
 
   #menuButton {
     opacity: 1;
-    transition: opacity 0.6s;
+    transition: opacity 0.4s;
     transition-delay: 0.6s;
   }
 
@@ -285,6 +298,8 @@ a {
 
   #menuButton.inMenu {
     opacity: 0;
+    pointer-events: none;
+    ;
     transform: translate(-50%, -50%);
     top: 50%;
     transition-delay: 0.0s;

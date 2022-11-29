@@ -1,4 +1,7 @@
 export default function initialiseMenu(webgl) {
+
+
+
     const menuButton = document.getElementById('menuButton');
     function showMenu() {
 
@@ -39,5 +42,15 @@ export default function initialiseMenu(webgl) {
     menuButton.onclick = toggleMenu;
 
     webgl.canvas.addEventListener('click', hideMenu)
+
+
+    const cardContainer = document.getElementById('cardContainer');
+    for (let i = 0; i < gridConfig.projects.length; i++) {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        if (!gridConfig.projects[i].enabled) card.classList.add('disabled');
+        card.innerHTML = gridConfig.projects[i].title;
+        cardContainer.appendChild(card)
+    }
 
 }

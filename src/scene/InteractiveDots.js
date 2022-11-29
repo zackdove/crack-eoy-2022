@@ -164,7 +164,6 @@ export default class InteractiveDots extends THREE.Group {
             }
 
         } else {
-            console.log('called he')
             clearTimeout(this.showTimeout);
             this.showTimeout = null;
             if (this.currentDot) {

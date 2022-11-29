@@ -17,6 +17,17 @@ const arcaKey = assets.queue({
   type: 'texture',
 })
 
+for (let i = 0; i < gridConfig.projects.length; i++) {
+  gridConfig.projects[i].textureKeys = [];
+  for (let j = 0; j < gridConfig.projects[i].textures.length; j++) {
+    gridConfig.projects[i].textureKeys.push(assets.queue({
+      url: gridConfig.projects[i].textures[j],
+      type: 'texture',
+    }))
+  }
+}
+
+
 export default class ArtistSphere extends THREE.Group {
   constructor(webgl, options = {}) {
     super(options)
@@ -61,6 +72,13 @@ export default class ArtistSphere extends THREE.Group {
     arcaMap.encoding = THREE.LinearEncoding;
     this.arcaMap = arcaMap;
 
+    for (let i = 0; i < gridConfig.projects.length; i++) {
+      gridConfig.projects[i].textureMaps = [];
+      for (let j = 0; j < gridConfig.projects[i].textureKeys.length; j++) {
+        gridConfig.projects[i].textureMaps.push(assets.get(gridConfig.projects[i].textureKeys[j]));
+      }
+    }
+
 
     this.visible = false;
 
@@ -85,13 +103,8 @@ export default class ArtistSphere extends THREE.Group {
   }
 
 
-  changeTo(s) {
-    if (s == 'sudan') {
-      this.plane.material.map = this.sudanMap;
-    } else if (s == 'lsdxoxo') {
-      this.plane.material.map = this.lsdxoxoMap
-    } else if (s == 'arca') {
-      this.plane.material.map = this.arcaMap;
-    }
+  changeTo(project) {
+    this.plane.material.map = project.textureMaps[0];
+
   }
 }
