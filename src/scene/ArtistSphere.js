@@ -78,9 +78,12 @@ export default class ArtistSphere extends THREE.Group {
         const t = assets.get(gridConfig.projects[i].textureKeys[j]);
         t.wrapS = THREE.MirroredRepeatWrapping;
         t.wrapT = THREE.MirroredRepeatWrapping;
-        t.repeat.set(2, 2);
-        t.offset.x = 0.5;
-        t.offset.y = -0.5;
+        // t.repeat.set(2.75, 2.75);
+        // t.offset.x = 0.125;
+        // t.offset.y = -0.825;
+        t.repeat.set(3, 3);
+        t.offset.x = 0.0;
+        t.offset.y = -1;
         t.encoding = THREE.LinearEncoding;
         t.needsUpdate = true;
         gridConfig.projects[i].textureMaps.push(t);
