@@ -9,10 +9,7 @@ const gridConfig = {
                 x: 0,
                 y: -3,
             },
-            textureType: 'video',
-            textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
             link: '/examplelink',
-            textureKey: 'sudan',
             enabled: true,
             textures: [
                 '/assets/images/sudanArchives.jpeg',
