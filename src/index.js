@@ -120,7 +120,7 @@ assets.load({ renderer: webgl.renderer }).then(() => {
 
 
   webgl.camera.position.set(0, 0, 0)
-  webgl.camera.fov = 90;
+  webgl.camera.fov = 70;
   webgl.camera.position.z = 0;
   webgl.camera.updateProjectionMatrix();
   // webgl.camera.lookAt(new THREE.Vector3(0, 0, 0))

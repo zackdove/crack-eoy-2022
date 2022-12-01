@@ -149,7 +149,7 @@ export default class InteractiveDots extends THREE.Group {
             if (this.currentDot.enabled) {
                 document.body.style.cursor = 'pointer'
             } else {
-                document.body.style.cursor = 'not-allowed'
+                document.body.style.cursor = 'auto'
             }
 
             if (!this.showTimeout) {
