@@ -79,12 +79,14 @@ webgl.params = params;
 // hide canvas
 webgl.canvas.style.visibility = 'hidden'
 
+
 initialiseMenu(webgl);
 
 // load any queued assets
 assets.load({ renderer: webgl.renderer }).then(() => {
   // add any "WebGL components" here...
   // append them to the scene so you can
+  document.body.style.opacity = 1;
 
   function makeVisible() {
     webgl.canvas.style.visibility = ''

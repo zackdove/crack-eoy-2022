@@ -38,6 +38,7 @@
 
 body {
   overflow: hidden;
+  transition: opacity 1s;
 }
 
 canvas {
