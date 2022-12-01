@@ -48,34 +48,102 @@ canvas {
 }
 
 .banner {
-  position: absolute;
+  position: fixed;
   font-size: 85px;
-  overflow: hidden;
-  --offset: 20vw;
-  --move-initial: calc(-25% + var(--offset));
-  --move-final: calc(-75% + var(--offset));
+  /* overflow: hidden; */
+  --offset: 0px;
+  --move-initial: -50%;
+  --move-final: 0%;
   pointer-events: none;
   line-height: 1;
+  color: black;
+  width: 100%;
+  will-change: transform;
+}
+
+.menuDot {
+  font-family: 'PBNeueBit-Bold';
+  font-size: 70px;
+  pointer-events: none;
+}
+
+.menuDot.disabled {
+  opacity: 0.5;
+}
+
+.menuDot.selected {
+  color: #ffffff;
+}
+
+.menuDot.selected.disabled {
+  /* color: #cccccc; */
+  /* opacity: 0.8; */
+}
+
+.menuDot .title {
+  font-size: calc(70px * 1/1.4);
+  position: absolute;
+  width: max-content;
+  pointer-events: none;
+  color: #ffffff;
+  top: 15px;
+  left: 40px;
+  visibility: hidden;
+}
+
+.menuDot .tapToView {
+  position: absolute;
+  width: max-content;
+  font-size: 30px;
+  top: 60px;
+  left: 45px;
+  visibility: hidden;
+}
+
+.menuDot.selected .tapToView {
+  visibility: initial;
+}
+
+.menuDot.selected .title {
+  visibility: initial;
+  color: #ffffff;
+}
+
+.menuDot.selected.disabled .title {
+  /* color: #cccccc; */
+  /* opacity: 0.8; */
+}
+
+
+
+
+.banner.white {
+  color: white;
 }
 
 .bannerInner {
   width: max-content;
-  display: flex;
-  position: relative;
-  transform: translate3d(var(--move-initial), 0, 0);
-  animation: marquee 7s linear infinite;
+  white-space: nowrap;
+  transform: translate3d(var(--move-initial), 0, 0.00001);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+  display: inline-block;
+  /* animation: marquee 24s linear infinite; */
+  text-rendering: optimizeSpeed;
+  font-smooth: never;
   /* animation-play-state: paused; */
 }
 
-.banner span {}
+.b .banner span {}
 
 @keyframes marquee {
   0% {
-    transform: translate3d(var(--move-initial), 0, 0);
+    transform: translate(var(--move-initial), 0) translateZ(0px);
   }
 
   100% {
-    transform: translate3d(var(--move-final), 0, 0);
+    transform: translate(var(--move-final), 0) translateZ(0px);
   }
 }
 
@@ -95,6 +163,8 @@ canvas {
   width: 100%;
   position: absolute;
   height: 100%;
+  top: 0;
+  left: 0;
 
 }
 
@@ -194,6 +264,10 @@ a {
 
 #menuButton.inMenu {
   top: 77.5%;
+}
+
+#menuButton.hide {
+  visibility: hidden;
 }
 
 #menuButton>svg {

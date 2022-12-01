@@ -16,13 +16,14 @@ const gridConfig = {
             enabled: true,
             textures: [
                 '/assets/images/sudanArchives.jpeg',
+                '/assets/images/lsdxoxo.jpeg',
             ],
         },
         {
             title: 'TOP TRACKS 2022',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
-                x: -1,
+                x: -1.5,
                 y: -2,
             },
             textureType: 'video',
@@ -32,14 +33,15 @@ const gridConfig = {
             enabled: true,
             textures: [
                 '/assets/images/sudanArchives.jpeg',
+                '/assets/images/lsdxoxo.jpeg',
             ],
         },
         {
             title: 'TOP FILMS 2022',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
-                x: 1,
-                y: 1,
+                x: 1.5,
+                y: 1.5,
             },
             textureType: 'video',
             textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
@@ -48,6 +50,7 @@ const gridConfig = {
             enabled: true,
             textures: [
                 '/assets/images/sudanArchives.jpeg',
+                '/assets/images/lsdxoxo.jpeg',
             ],
         },
         {
@@ -64,16 +67,14 @@ const gridConfig = {
             enabled: true,
             textures: [
                 '/assets/images/sudanArchives.jpeg',
-            ],
-            textures: [
-                '/assets/images/sudanArchives.jpeg',
+                '/assets/images/lsdxoxo.jpeg',
             ],
         },
         {
             title: 'TOP FILMS 2022',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
-                x: -2,
+                x: -3,
                 y: -1,
             },
             textureType: 'video',
@@ -83,13 +84,14 @@ const gridConfig = {
             enabled: true,
             textures: [
                 '/assets/images/sudanArchives.jpeg',
+                '/assets/images/lsdxoxo.jpeg',
             ],
         },
         {
             title: 'TOP FILMS 2022',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
-                x: 2,
+                x: 1.75,
                 y: 0,
             },
             textureType: 'video',
@@ -99,6 +101,7 @@ const gridConfig = {
             enabled: false,
             textures: [
                 '/assets/images/sudanArchives.jpeg',
+                '/assets/images/lsdxoxo.jpeg',
             ],
         },
 
