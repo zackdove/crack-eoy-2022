@@ -60,8 +60,8 @@ const params = {
   },
   controls: {
     damping: 0.13,
-    maxDegreesHorizontal: 10,
-    maxDegreesVertical: 5,
+    maxDegreesHorizontal: 20,
+    maxDegreesVertical: 10,
   },
   mobileControls: {
     velocityFactor: 0.0002,
@@ -70,8 +70,8 @@ const params = {
   grid: {
     // widthSegments: 24,
     // verticalSegments: 24,
-    widthSegments: 40,
-    verticalSegments: 31,
+    widthSegments: 20,
+    verticalSegments: 15,
   },
 }
 webgl.params = params;
@@ -108,8 +108,8 @@ assets.load({ renderer: webgl.renderer }).then(() => {
 
   // use them from other components easily
   webgl.scene.rotationGroup = new THREE.Group();
-  webgl.scene.bgPlane = new BgPlane(webgl)
-  webgl.scene.bgPlane.position.set(0, 0, -1)
+  // webgl.scene.bgPlane = new BgPlane(webgl)
+  // webgl.scene.bgPlane.position.set(0, 0, -1)
   webgl.scene.bgSphere = new BgSphere(webgl)
   webgl.scene.bgSphere.position.set(0, 0, 0)
 
@@ -118,16 +118,20 @@ assets.load({ renderer: webgl.renderer }).then(() => {
 
 
   webgl.camera.position.set(0, 0, 0)
+  webgl.camera.fov = 90;
+  webgl.camera.position.z = 0;
+  webgl.camera.updateProjectionMatrix();
   // webgl.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
   webgl.scene.add(webgl.scene.rotationGroup)
   // webgl.scene.rotationGroup.add(webgl.scene.bgPlane)
   webgl.scene.rotationGroup.add(webgl.scene.bgSphere)
 
-  webgl.scene.rotationGroup.add(webgl.scene.artistSphere)
+  webgl.scene.add(webgl.scene.artistSphere)
 
   webgl.scene.interactiveDots = new InteractiveDots(webgl, { widthSegments: params.grid.widthSegments, heightSegments: params.grid.verticalSegments })
   webgl.scene.rotationGroup.add(webgl.scene.interactiveDots)
+  webgl.scene.interactiveDots.fixDotRotation();
 
   // webgl.scene.menuSphere = new MenuSphere(webgl);
   // webgl.scene.add(webgl.scene.menuSphere)
@@ -157,7 +161,7 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   fisheyeMaterial.uniforms['focalLength'].value = webgl.params.fisheye.focalLength;
   fisheyeMaterial.uniforms['skew'].value = webgl.params.fisheye.skew;
   const fisheyePass = new FisheyePass(fisheyeMaterial, "tDiffuse", webgl);
-  webgl.composer.addPass(fisheyePass);
+  // webgl.composer.addPass(fisheyePass);
 
   // add the save screenshot and save gif buttons
   if (window.DEBUG) {

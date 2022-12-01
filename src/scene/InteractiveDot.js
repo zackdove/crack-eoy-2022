@@ -1,21 +1,23 @@
 import * as THREE from 'three'
 import { Text } from 'troika-three-text'
 import assets from '../utils/AssetManager'
+import { CSS2DObject } from '../utils/CSS2DRenderer';
 
 
 
 export default class InteractiveDot extends THREE.Group {
     isBeingRaycast = false;
-    constructor(webgl, geometry, material, index,) {
+    constructor(webgl, geometry, material, index, whiteMat, css2dRenderer) {
         super();
         this.webgl = webgl
         this.raycaster = new THREE.Raycaster()
+        this.enabled = gridConfig.projects[index].enabled;
 
         // this.sphere = new THREE.Mesh(geometry, material);
         // material.color = new THREE.Color('green')
         // this.add(this.sphere)
         const plusObject = new Text();
-        this.add(plusObject);
+        // this.add(plusObject);
         this.plusObject = plusObject;
         plusObject.handleRaycast = () => this.handleRaycast();
         plusObject.color = 0x000000;
@@ -30,9 +32,25 @@ export default class InteractiveDot extends THREE.Group {
         // textObject.position.z = 0.1;
         // textObject.position.x = 0.2;
 
+        const div = document.createElement('div');
+        this.div = div;
+        div.innerHTML = '+';
+        div.classList.add('menuDot')
+        const objectCSS = new CSS2DObject(div);
+        this.add(objectCSS);
+
+        const title = document.createElement('div');
+        title.innerHTML = gridConfig.projects[index].title;
+        title.classList.add('title');
+        div.appendChild(title);
+
+        if (!gridConfig.projects[index].enabled) {
+            div.classList.add('disabled')
+        }
+
 
         const textObject = new Text()
-        this.add(textObject);
+        // this.add(textObject);
         this.textObject = textObject;
         // Can remove this once dots = length
         this.index = index;
@@ -43,6 +61,7 @@ export default class InteractiveDot extends THREE.Group {
         textObject.text = this.title.join('');
         textObject.font = 'assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff'
         textObject.fontSize = 0.325;
+        // textObject.curveRadius = 4
 
         textObject.handleRaycast = () => this.handleRaycast();
 
@@ -61,23 +80,16 @@ export default class InteractiveDot extends THREE.Group {
         textObject.position.x = 0.2;
         // textObject.position.y = -0.01;
         if (webgl.isTouch) {
-            const tapToView = new Text();
-            tapToView.text = 'Tap to view';
-            tapToView.handleRaycast = () => this.handleRaycast();
-            tapToView.font = 'assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff'
-            tapToView.fontSize = 0.25;
-            tapToView.color = 0xffffff;
-            tapToView.anchorX = 'left';
-            tapToView.anchorY = 'middle';
-            tapToView.position.x = 0.225;
-            tapToView.position.y = -0.25
-            tapToView.visible = true;
-            textObject.visible = true;
-            tapToView.sync();
+            this.tapToView = document.createElement('div');
+            if (this.enabled) {
+                this.tapToView.innerHTML = 'Tap To View';
+            } else {
+                this.tapToView.innerHTML = 'Coming Soon';
+            }
 
-            this.tapToView = tapToView
-            this.tapToView.layers.enable(1);
-            this.add(tapToView)
+            this.tapToView.classList.add('tapToView');
+            div.appendChild(this.tapToView);
+            // this.add(tapToView)
         }
         // this.lookAt(webgl.camera.position)
         // Update the rendering:
@@ -100,10 +112,14 @@ export default class InteractiveDot extends THREE.Group {
     }
     handleClick() {
         console.log('dot clicked, navigating to ' + gridConfig.projects[this.index].link)
-        window.location.href = gridConfig.projects[this.index].link
+        if (this.enabled) {
+            window.location.href = gridConfig.projects[this.index].link
+        }
+
     }
 
     update(dt, time) {
+
         if (this.isBeingRaycast) {
             // console.log(this.index)
             // this.textObject.text = this.coordinates;
@@ -111,7 +127,7 @@ export default class InteractiveDot extends THREE.Group {
             // this.textObject.text = this.title;
         }
         // this.isBeingRaycast = false;
-        this.lookAt(this.webgl.camera.position)
+        // this.lookAt(this.webgl.camera.position)
 
     }
 

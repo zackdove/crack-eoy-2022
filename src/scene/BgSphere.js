@@ -21,8 +21,8 @@ export default class BgSphere extends THREE.Group {
     const map = assets.get(gradientKey);
     map.wrapS = THREE.MirroredRepeatWrapping;
     map.wrapT = THREE.MirroredRepeatWrapping;
-    map.repeat.set(6, 4);
-    map.offset.x = 0.5;
+    map.repeat.set(3, 2);
+    // map.offset.x = 0.5;
     map.offset.y = 0.5;
     map.needsUpdate = true;
     map.encoding = THREE.LinearEncoding;

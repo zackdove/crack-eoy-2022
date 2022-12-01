@@ -70,7 +70,7 @@ export default class WebGLApp {
     if (gamma) {
       // enable gamma correction, read more about it here:
       // https://www.donmccurdy.com/2020/06/17/color-management-in-threejs/
-      this.renderer.outputEncoding = THREE.sRGBEncoding
+      this.renderer.outputEncoding = THREE.LinearEncoding
     }
     if (physicallyCorrectLights) {
       this.renderer.physicallyCorrectLights = true
@@ -88,7 +88,7 @@ export default class WebGLApp {
     this.#height = options.height
 
     // clamp pixel ratio for performance
-    this.maxPixelRatio = 2
+    this.maxPixelRatio = 2;
     // clamp delta to avoid stepping anything too far forward
     this.maxDeltaTime = options.maxDeltaTime || 1 / 30
 

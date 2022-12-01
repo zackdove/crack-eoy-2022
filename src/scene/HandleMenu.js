@@ -53,4 +53,17 @@ export default function initialiseMenu(webgl) {
         cardContainer.appendChild(card)
     }
 
+    const topBanner = document.querySelector('#topBanner>.bannerInner');
+    const bottomBanner = document.querySelector('#bottomBanner>.bannerInner');
+    let x = 0;
+
+    webgl.onUpdate((dt, time) => {
+        // console.log('kyubey')
+        x += dt * 4;
+        if (x > 50) x = 0;
+        topBanner.style.transform = 'translateX(' + -x + '%)';
+        bottomBanner.style.transform = 'translateX(' + (x - 50) + '%)';
+    })
+
+
 }

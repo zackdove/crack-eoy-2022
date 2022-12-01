@@ -45,7 +45,7 @@ export default class ArtistSphere extends THREE.Group {
     const sudanMap = assets.get(sudanKey);
     sudanMap.wrapS = THREE.MirroredRepeatWrapping;
     sudanMap.wrapT = THREE.MirroredRepeatWrapping;
-    sudanMap.repeat.set(7, 3);
+    sudanMap.repeat.set(8, 4);
     sudanMap.offset.x = 0.0;
     sudanMap.offset.y = -1.0;
     sudanMap.needsUpdate = true;
@@ -75,7 +75,15 @@ export default class ArtistSphere extends THREE.Group {
     for (let i = 0; i < gridConfig.projects.length; i++) {
       gridConfig.projects[i].textureMaps = [];
       for (let j = 0; j < gridConfig.projects[i].textureKeys.length; j++) {
-        gridConfig.projects[i].textureMaps.push(assets.get(gridConfig.projects[i].textureKeys[j]));
+        const t = assets.get(gridConfig.projects[i].textureKeys[j]);
+        t.wrapS = THREE.MirroredRepeatWrapping;
+        t.wrapT = THREE.MirroredRepeatWrapping;
+        t.repeat.set(4, 2);
+        t.offset.x = -0.5;
+        t.offset.y = -0.5;
+        t.encoding = THREE.LinearEncoding;
+        t.needsUpdate = true;
+        gridConfig.projects[i].textureMaps.push(t);
       }
     }
 
@@ -95,16 +103,47 @@ export default class ArtistSphere extends THREE.Group {
     // later the group will be added to the scene
     this.add(this.plane)
     this.rotation.y = Math.PI / 2;
+    this.currentProject = gridConfig.projects[0];
+
+    this.i = 0;
+    this.incrementI = this.incrementI.bind(this)
 
 
   }
 
+  incrementI() {
+    this.i++;
+    this.i = this.i % this.currentProject.textureMaps.length;
+    this.plane.material.map = this.currentProject.textureMaps[this.i];
+    if (!this.visible) {
+
+    }
+  }
+
+  startInterval() {
+    if (!this.interval) {
+      this.interval = setInterval(this.incrementI, 1200);
+    }
+  }
+
+  clearInterval() {
+    clearInterval(this.interval)
+    this.interval = null;
+  }
+
   update(dt, time) {
+    if (!this.visible) {
+      // clearInterval(this.interval)
+      // this.interval = null;
+    }
   }
 
 
   changeTo(project) {
-    this.plane.material.map = project.textureMaps[0];
-
+    // this.plane.material.map = project.textureMaps[0];
+    this.currentProject = project;
+    this.i = 0;
+    this.plane.material.map = this.currentProject.textureMaps[this.i];
+    this.startInterval();
   }
 }

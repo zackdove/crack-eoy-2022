@@ -23,6 +23,7 @@
     "cannon-es-debugger": "^1.0.0",
     "controls-gui": "^2.0.0",
     "controls-state": "^2.0.0",
+    "detect-browser": "^5.3.0",
     "detect-gpu": "^4.0.17",
     "image-promise": "^7.0.1",
     "lodash-es": "^4.17.21",
