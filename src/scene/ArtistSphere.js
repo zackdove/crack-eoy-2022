@@ -125,7 +125,7 @@ export default class ArtistSphere extends THREE.Group {
 
   startInterval() {
     if (!this.interval) {
-      this.interval = setInterval(this.incrementI, 800);
+      this.interval = setInterval(this.incrementI, 500);
     }
   }
 
