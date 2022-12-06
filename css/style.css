@@ -64,7 +64,7 @@ canvas {
 
 .menuDot {
   font-family: 'PBNeueBit-Bold';
-  font-size: 70px;
+  font-size: 40px;
   pointer-events: none;
 }
 
@@ -82,22 +82,22 @@ canvas {
 }
 
 .menuDot .title {
-  font-size: calc(70px * 1/1.4);
+  font-size: calc(40px * 1/1.4);
   position: absolute;
   width: max-content;
   pointer-events: none;
   color: #ffffff;
-  top: 15px;
-  left: 40px;
+  top: 8px;
+  left: 25px;
   visibility: hidden;
 }
 
 .menuDot .tapToView {
   position: absolute;
   width: max-content;
-  font-size: 30px;
-  top: 60px;
-  left: 45px;
+  font-size: 23px;
+  top: 34px;
+  left: 27px;
   visibility: hidden;
 }
 
@@ -331,6 +331,24 @@ a {
 }
 
 @media (min-width: 800px) {
+
+
+  .menuDot .title {
+    font-size: calc(70px * 1/1.4);
+    top: 15px;
+    left: 40px;
+  }
+
+  .menuDot {
+    font-size: 70px;
+  }
+
+  .menuDot .tapToView {
+    font-size: 30px;
+    top: 60px;
+    left: 45px;
+  }
+
   #cardContainerContainer {
     pointer-events: none;
   }
