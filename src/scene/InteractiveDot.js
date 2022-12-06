@@ -39,8 +39,12 @@ export default class InteractiveDot extends THREE.Group {
         const objectCSS = new CSS2DObject(div);
         this.add(objectCSS);
 
+
         const title = document.createElement('div');
         title.innerHTML = gridConfig.projects[index].title;
+        title.onclick = () => {
+            window.location.href = gridConfig.projects[index].link
+        }
         title.classList.add('title');
         div.appendChild(title);
 
@@ -85,6 +89,11 @@ export default class InteractiveDot extends THREE.Group {
                 this.tapToView.innerHTML = 'Tap To View';
             } else {
                 this.tapToView.innerHTML = 'Coming Soon';
+            }
+            this.tapToView.onclick = () => {
+
+                window.location.href = gridConfig.projects[index].link
+
             }
 
             this.tapToView.classList.add('tapToView');

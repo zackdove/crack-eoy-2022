@@ -103,16 +103,21 @@ canvas {
 
 .menuDot.selected .tapToView {
   visibility: initial;
+  pointer-events: all;
 }
 
 .menuDot.selected .title {
   visibility: initial;
   color: #ffffff;
+  pointer-events: all;
 }
 
 .menuDot.selected.disabled .title {
-  /* color: #cccccc; */
-  /* opacity: 0.8; */
+  pointer-events: none;
+}
+
+.menuDot.selected.disabled .tapToView {
+  pointer-events: none;
 }
 
 

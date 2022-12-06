@@ -50,6 +50,9 @@ export default function initialiseMenu(webgl) {
         card.classList.add('card');
         if (!gridConfig.projects[i].enabled) card.classList.add('disabled');
         card.innerHTML = gridConfig.projects[i].title;
+        card.onclick = () => {
+            window.location.href = gridConfig.projects[i].link
+        }
         cardContainer.appendChild(card)
     }
 
