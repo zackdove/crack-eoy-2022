@@ -58,6 +58,8 @@ export default function initialiseMenu(webgl) {
 
     const topBanner = document.querySelector('#topBanner>.bannerInner');
     const bottomBanner = document.querySelector('#bottomBanner>.bannerInner');
+    const topBannerWhite = document.querySelector('#topBannerWhite>.bannerInner');
+    const bottomBannerWhite = document.querySelector('#bottomBannerWhite>.bannerInner');
     let x = 0;
 
     webgl.onUpdate((dt, time) => {
@@ -65,7 +67,9 @@ export default function initialiseMenu(webgl) {
         x += dt * 4;
         if (x > 50) x = 0;
         topBanner.style.transform = 'translateX(' + -x + '%)';
+        topBannerWhite.style.transform = 'translateX(' + -x + '%)';
         bottomBanner.style.transform = 'translateX(' + (x - 50) + '%)';
+        bottomBannerWhite.style.transform = 'translateX(' + (x - 50) + '%)';
     })
 
 

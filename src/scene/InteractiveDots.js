@@ -40,7 +40,9 @@ export default class InteractiveDots extends THREE.Group {
         }
         // this.position.set(0, 0, 0)
         this.topBanner = document.getElementById('topBanner')
+        this.topBannerWhite = document.getElementById('topBannerWhite')
         this.bottomBanner = document.getElementById('bottomBanner')
+        this.bottomBannerWhite = document.getElementById('bottomBannerWhite')
         this.overlay = document.getElementById('overlay');
         this.menuButton = document.getElementById('menuButton')
         const sphereGeo = new THREE.SphereGeometry(0.05);
@@ -170,17 +172,27 @@ export default class InteractiveDots extends THREE.Group {
                             value.textObject.visible = true;
                             value.textObject.color = 0xffffff;
                             value.plusObject.color = 0xffffff;
-                            this.topBanner.classList.add('white')
-                            this.bottomBanner.classList.add('white')
+                            this.topBanner.classList.remove('show')
+                            this.topBannerWhite.classList.add('show');
+                            this.bottomBanner.classList.remove('show')
+                            this.bottomBannerWhite.classList.add('show')
                             this.menuButton.classList.add('hide')
                             if (this.webgl.isTouch) {
                                 console.log(value)
                                 value.tapToView.visible = true;
+                             
+                                  
+                                
                             }
                         } else {
                             if (value.div) {
-                                value.div.classList.remove('selected')
-                                value.visible = false;
+                                if (this.webgl.isTouch){
+                                    value.div.classList.add('mobileShow')
+                                } else {
+                                    value.div.classList.remove('selected')
+                                }
+                              
+                                // value.visible = false;
                                 if (this.webgl.isTouch && value.tapToView) {
                                     value.tapToView.visible = true;
                                 }
@@ -205,10 +217,14 @@ export default class InteractiveDots extends THREE.Group {
                 if (value.textObject) {
                     value.textObject.color = 0x000000;
                     value.div.classList.remove('selected')
+                    value.div.classList.remove('mobileShow')
                     value.plusObject.color = 0x000000;
                     this.menuButton.classList.remove('hide')
-                    this.topBanner.classList.remove('white')
-                    this.bottomBanner.classList.remove('white')
+
+                    this.topBanner.classList.add('show')
+                    this.topBannerWhite.classList.remove('show');
+                    this.bottomBanner.classList.add('show');
+                    this.bottomBannerWhite.classList.remove('show');
 
                     if (!this.webgl.isTouch) {
                         value.visible = true;

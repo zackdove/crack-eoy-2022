@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import assets from '../utils/AssetManager'
 
 const gradientKey = assets.queue({
-  url: 'assets/images/gradientBg.jpeg',
+  url: 'assets/images/grid-png-3.jpg',
   type: 'texture',
 })
 
@@ -17,15 +17,16 @@ export default class BgSphere extends THREE.Group {
     // destructure and default values like you do in React
     const color = 0xffffff;
 
-    const geometry = new THREE.SphereGeometry(10, 32, 32)
+    const geometry = new THREE.SphereGeometry(10, 128, 128)
     const map = assets.get(gradientKey);
     map.wrapS = THREE.MirroredRepeatWrapping;
     map.wrapT = THREE.MirroredRepeatWrapping;
-    map.repeat.set(3, 2);
+    map.repeat.set(10, 6);
     // map.offset.x = 0.5;
     map.offset.y = 0.5;
     map.needsUpdate = true;
-    map.encoding = THREE.LinearEncoding;
+    // map.encoding = THREE.LinearEncoding;
+
     this.map = map;
 
 
@@ -36,6 +37,7 @@ export default class BgSphere extends THREE.Group {
       color,
       map: map,
       side: THREE.DoubleSide,
+      transparent: false,
     })
     this.plane = new THREE.Mesh(geometry, material)
 

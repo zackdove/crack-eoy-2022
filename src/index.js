@@ -135,13 +135,13 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   webgl.scene.rotationGroup.add(webgl.scene.interactiveDots)
   webgl.scene.interactiveDots.fixDotRotation();
 
-  // webgl.scene.menuSphere = new MenuSphere(webgl);
-  // webgl.scene.add(webgl.scene.menuSphere)
-  // webgl.scene.menuSphere.position.set(0, 0, -8);
+  webgl.scene.menuSphere = new MenuSphere(webgl);
+  webgl.scene.rotationGroup.add(webgl.scene.menuSphere)
+  webgl.scene.menuSphere.position.set(0, 0, -3);
 
   webgl.scene.background = null;
 
-  webgl.scene.suzanne.position.set(0, 0, -2)
+  webgl.scene.suzanne.position.set(0, 0, 2)
 
   webgl.scene.controlService = new ControlService(webgl);
   webgl.scene.add(webgl.scene.controlService)

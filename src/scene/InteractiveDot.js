@@ -3,6 +3,21 @@ import { Text } from 'troika-three-text'
 import assets from '../utils/AssetManager'
 import { CSS2DObject } from '../utils/CSS2DRenderer';
 
+const gradientKey = assets.queue({
+    url: 'assets/images/grid-png-2.jpeg',
+    type: 'texture',
+})
+
+
+
+gridConfig.gems.textureKeys = [];
+for (let j = 0; j < gridConfig.gems.textures.length; j++) {
+    gridConfig.gems.textureKeys.push(assets.queue({
+        url: gridConfig.gems.textures[j],
+        type: 'texture',
+    }))
+}
+
 
 
 export default class InteractiveDot extends THREE.Group {
@@ -29,15 +44,26 @@ export default class InteractiveDot extends THREE.Group {
         plusObject.position.y = +  0.325 * 0.1;
         plusObject.visible = true;
         plusObject.sync();
+        //  console.log(gridConfig.gems.textureKeys[index])
+        const gemObject = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.3, 1, 1), new THREE.MeshBasicMaterial({
+            map: assets.get(gridConfig.gems.textureKeys[index % gridConfig.gems.textureKeys.length]),
+            // alphaText: 0.5,
+            transparent: true,
+        }));
+        this.add(gemObject)
         // textObject.position.z = 0.1;
         // textObject.position.x = 0.2;
 
         const div = document.createElement('div');
         this.div = div;
-        div.innerHTML = '+';
+        div.innerHTML = ' ';
         div.classList.add('menuDot')
         const objectCSS = new CSS2DObject(div);
         this.add(objectCSS);
+
+        if (this.webgl.isTouch){
+            div.classList.add('mobile')
+        }
 
 
         const title = document.createElement('div');
@@ -136,7 +162,7 @@ export default class InteractiveDot extends THREE.Group {
             // this.textObject.text = this.title;
         }
         // this.isBeingRaycast = false;
-        // this.lookAt(this.webgl.camera.position)
+        this.lookAt(this.webgl.camera.position)
 
     }
 
