@@ -77,7 +77,12 @@ export default class InteractiveDots extends THREE.Group {
             let id = i
             // console.log(id)
             const sphere = new InteractiveDot(webgl, sphereGeo, material, i, whiteMat, this.css2dRenderer);
-            sphere.position.copy(getPosition(gridConfig.projects[i].position.x, gridConfig.projects[i].position.y));
+            sphere.position.copy(
+                getPosition(
+                    gridConfig.projects[i].position.x * this.webgl.width / 1512,
+                    gridConfig.projects[i].position.y,
+                )
+            );
             this.add(sphere)
             idToObject[id] = sphere;
 
@@ -180,18 +185,16 @@ export default class InteractiveDots extends THREE.Group {
                             if (this.webgl.isTouch) {
                                 console.log(value)
                                 value.tapToView.visible = true;
-                             
-                                  
-                                
+
+
+
                             }
                         } else {
                             if (value.div) {
-                                if (this.webgl.isTouch){
-                                    value.div.classList.add('mobileShow')
-                                } else {
-                                    value.div.classList.remove('selected')
-                                }
-                              
+
+                                value.div.classList.remove('selected')
+
+
                                 // value.visible = false;
                                 if (this.webgl.isTouch && value.tapToView) {
                                     value.tapToView.visible = true;
@@ -313,5 +316,8 @@ export default class InteractiveDots extends THREE.Group {
     update(dt, time) {
         this.css2dRenderer.render(this.webgl.scene, this.webgl.camera)
         // this.gpuPickHelper.pick(this.pickPosition, this.pickingScene, this.webgl.camera, dt);
+    }
+    resize({ width, height, pixelRatio }) {
+        this.css2dRenderer.setSize(width, height);
     }
 }

@@ -61,9 +61,9 @@ export default class InteractiveDot extends THREE.Group {
         const objectCSS = new CSS2DObject(div);
         this.add(objectCSS);
 
-        if (this.webgl.isTouch){
-            div.classList.add('mobile')
-        }
+        // if (this.webgl.isTouch){
+        //     div.classList.add('mobile')
+        // }
 
 
         const title = document.createElement('div');
@@ -77,6 +77,14 @@ export default class InteractiveDot extends THREE.Group {
         if (!gridConfig.projects[index].enabled) {
             div.classList.add('disabled')
         }
+
+        // if (this.webgl.isTouch){
+        //     const raycastSpriteMaterial = new THREE.SpriteMaterial( );
+
+        //     const raycastSprite = new THREE.Sprite( material );
+        //     this.add(raycastSprite)
+
+        // }
 
 
         const textObject = new Text()
@@ -150,7 +158,6 @@ export default class InteractiveDot extends THREE.Group {
         if (this.enabled) {
             window.location.href = gridConfig.projects[this.index].link
         }
-
     }
 
     update(dt, time) {

@@ -96,8 +96,8 @@ canvas {
   width: max-content;
   pointer-events: none;
   color: #000;
-  top: 8px;
-  left: 25px;
+  top: -14px;
+  left: 30px;
   visibility: hidden;
 }
 
@@ -105,8 +105,8 @@ canvas {
   position: absolute;
   width: max-content;
   font-size: 23px;
-  top: 34px;
-  left: 27px;
+  top: 19px;
+  left: 30px;
   visibility: hidden;
 }
 
@@ -172,7 +172,8 @@ canvas {
 }
 
 .bannerInner > img{
-  width: 100vw;
+  /* width: 100vw; */
+  height: 86px;
 }
 
 .b .banner span {}
@@ -206,11 +207,11 @@ canvas {
 
 
 #bottomBanner {
-  bottom: 0;
+  bottom: -10px;
   z-index: 99998;
 }
 #bottomBannerWhite {
-  bottom: 0;
+  bottom: -10px;
   z-index: 99999;
 }
 
