@@ -19,6 +19,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Times MT Condensed';
+  src: url('../assets/fonts/Times New Roman MT Condensed Regular.woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 .eugenia {
   font-family: 'Eugenia Headline Web';
   font-weight: 400;
@@ -63,8 +72,8 @@ canvas {
 }
 
 .menuDot {
-  font-family: 'PBNeueBit-Bold';
-  font-size: 40px;
+  font-family: 'Times MT Condensed';
+  font-size: 10px;
   pointer-events: none;
 }
 
@@ -86,9 +95,9 @@ canvas {
   position: absolute;
   width: max-content;
   pointer-events: none;
-  color: #ffffff;
-  top: 8px;
-  left: 25px;
+  color: #000;
+  top: -14px;
+  left: 30px;
   visibility: hidden;
 }
 
@@ -96,19 +105,31 @@ canvas {
   position: absolute;
   width: max-content;
   font-size: 23px;
-  top: 34px;
-  left: 27px;
+  top: 19px;
+  left: 30px;
   visibility: hidden;
 }
 
+.menuDot.mobileShow{
+  color: #fff;
+}
+
+
+.menuDot.mobileShow .title{
+  color: #fff;
+  visibility: initial;
+}
+
+
 .menuDot.selected .tapToView {
   visibility: initial;
+  color: #fff;
   pointer-events: all;
 }
 
 .menuDot.selected .title {
   visibility: initial;
-  color: #ffffff;
+  color: #fff;
   pointer-events: all;
 }
 
@@ -120,7 +141,13 @@ canvas {
   pointer-events: none;
 }
 
+.menuDot.mobile {
+  color: #000;
+}
 
+.menuDot.mobile .title{
+  visibility: initial;
+}
 
 
 .banner.white {
@@ -140,6 +167,14 @@ canvas {
   font-smooth: never;
   /* animation-play-state: paused; */
 }
+.bannerInner.bannerInnerWhite{
+  position: absolute;
+}
+
+.bannerInner > img{
+  /* width: 100vw; */
+  height: 86px;
+}
 
 .b .banner span {}
 
@@ -155,11 +190,28 @@ canvas {
 
 #topBanner {
   top: 0;
-  z-index: 99999;
+  z-index: 99998;
 }
 
+#topBannerWhite{
+  top: 0;
+  z-index: 99999;
+}
+.banner{
+  display: none;
+}
+.banner.show{
+  display: block;
+}
+
+
+
 #bottomBanner {
-  bottom: 0;
+  bottom: -10px;
+  z-index: 99998;
+}
+#bottomBannerWhite {
+  bottom: -10px;
   z-index: 99999;
 }
 
@@ -221,7 +273,7 @@ a {
   border-radius: 30px;
   font-size: 55px;
   line-height: 45px;
-  font-family: 'PBNeueBit-Bold';
+  font-family: 'Times MT Condensed';
   /* fake gap */
   display: flex;
   justify-content: center;
@@ -297,7 +349,7 @@ a {
   top: 50%;
   background-color: #ECFF77;
   transform: translate(-50%, -50%);
-
+  display: none;
   transition: top 0.5s;
   /* transition-delay: 0.4s; */
   padding: 0;
@@ -334,7 +386,7 @@ a {
 
 
   .menuDot .title {
-    font-size: calc(70px * 1/1.4);
+    font-size: calc(50px * 1/1.4);
     top: 15px;
     left: 40px;
   }

@@ -1,9 +1,18 @@
 // Pls dont put more than six
 
 const gridConfig = {
+    gems: {
+        textures: [
+            "/assets/images/gems/blue.png",
+            "/assets/images/gems/green.png",
+            "/assets/images/gems/purple.png",
+            "/assets/images/gems/yellow.png",
+    ],
+        textureKeys: []
+    },
     projects: [
         {
-            title: 'TOP ALBUMS 2022',
+            title: 'Top 50 Albums 2023',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
                 x: 0,
@@ -17,7 +26,7 @@ const gridConfig = {
             ],
         },
         {
-            title: 'TOP TRACKS 2022',
+            title: 'Top 50 Albums 2023',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
                 x: -1.5,
@@ -34,7 +43,7 @@ const gridConfig = {
             ],
         },
         {
-            title: 'TOP FILMS 2022',
+            title: 'Top 50 Albums 2023',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
                 x: 1.5,
@@ -51,7 +60,7 @@ const gridConfig = {
             ],
         },
         {
-            title: 'TOP FILMS 2022',
+            title: 'Top 50 Albums 2023',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
                 x: -2,
@@ -68,7 +77,7 @@ const gridConfig = {
             ],
         },
         {
-            title: 'TOP FILMS 2022',
+            title: 'Top 50 Albums 2023',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
                 x: -3,
@@ -85,7 +94,7 @@ const gridConfig = {
             ],
         },
         {
-            title: 'TOP FILMS 2022',
+            title: 'Top 50 Albums 2023',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
                 x: 1.75,
