@@ -165,6 +165,6 @@ assets.load({ renderer: webgl.renderer }).then(() => {
 
   // start animation loop
   console.log('render start')
-  webgl.start().resize({pixelRatio: 2})
+  webgl.start().resize({pixelRatio: 1.5})
   
 })
