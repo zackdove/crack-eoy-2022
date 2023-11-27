@@ -31,11 +31,11 @@ const webgl = new WebGLApp({
   background: '#00ff00',
   backgroundAlpha: 0.5,
   // enable postprocessing
-  postprocessing: true,
+  postprocessing: false,
   // show the fps counter from stats.js
-  showFps: window.DEBUG,
+  showFps: true,
   // enable OrbitControls
-  orbitControls: false,
+  orbitControls: true,
   // Add the controls pane inputs
 
   hideControls: true,
@@ -94,6 +94,8 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     document.body.style.visibility = 'visible';
   }
 
+  makeVisible()
+
   let textsLoaded = 0;
 
   webgl.increaseTextsLoaded = () => {
@@ -104,9 +106,7 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     }
   }
 
-  webgl.scene.suzanne = new Suzanne(webgl)
-  webgl.scene.add(webgl.scene.suzanne)
-  webgl.scene.add(webgl.camera)
+  
 
   // use them from other components easily
   webgl.scene.rotationGroup = new THREE.Group();
@@ -126,7 +126,6 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   // webgl.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
   webgl.scene.add(webgl.scene.rotationGroup)
-  // webgl.scene.rotationGroup.add(webgl.scene.bgPlane)
   webgl.scene.rotationGroup.add(webgl.scene.bgSphere)
 
   webgl.scene.add(webgl.scene.artistSphere)
@@ -141,7 +140,6 @@ assets.load({ renderer: webgl.renderer }).then(() => {
 
   webgl.scene.background = null;
 
-  webgl.scene.suzanne.position.set(0, 0, 2)
 
   webgl.scene.controlService = new ControlService(webgl);
   webgl.scene.add(webgl.scene.controlService)
@@ -149,20 +147,11 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   // lights and other scene related stuff
   addNaturalLight(webgl)
 
+  window.webgl = webgl;
+
   // postprocessing
   // add an existing effect from the postprocessing library
-  var fisheye = getDistortionShaderDefinition();
-  const fisheyeMaterial = new THREE.ShaderMaterial({
-    uniforms: fisheye.uniforms,
-    vertexShader: fisheye.vertexShader,
-    fragmentShader: fisheye.fragmentShader,
-  });
 
-  fisheyeMaterial.uniforms['distortion'].value = webgl.params.fisheye.distortion; // radial distortion coeff of term r^2
-  fisheyeMaterial.uniforms['principalPoint'].value = webgl.params.fisheye.principalPoint;
-  fisheyeMaterial.uniforms['focalLength'].value = webgl.params.fisheye.focalLength;
-  fisheyeMaterial.uniforms['skew'].value = webgl.params.fisheye.skew;
-  const fisheyePass = new FisheyePass(fisheyeMaterial, "tDiffuse", webgl);
   // webgl.composer.addPass(fisheyePass);
 
   // add the save screenshot and save gif buttons
@@ -176,5 +165,6 @@ assets.load({ renderer: webgl.renderer }).then(() => {
 
   // start animation loop
   console.log('render start')
-  webgl.start()
+  webgl.start().resize({pixelRatio: 2})
+  
 })

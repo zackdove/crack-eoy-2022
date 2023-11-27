@@ -14,6 +14,27 @@ export default class ControlService extends THREE.Group {
         this.cameraTarget = new THREE.Vector3(0, 0, 0)
         this.webgl = webgl;
     }
+
+    setupOrientation(){
+        if (window.DeviceOrientationEvent) {
+            console.log("Device has orientation")
+            window.addEventListener(
+              "deviceorientation",
+              (event) => {
+                const rotateDegrees = event.alpha; // alpha: rotation around z-axis
+                const leftToRight = event.gamma; // gamma: left to right
+                const frontToBack = event.beta; // beta: front back motion
+          
+                handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+              },
+              true,
+            );
+          }
+          
+          const handleOrientationEvent = (frontToBack, leftToRight, rotateDegrees) => {
+            console.log(frontToBack)
+          };
+    }
     onPointerDown(event, { x, y }) {
         console.log('pointer down')
         if (this.webgl.isTouch) {

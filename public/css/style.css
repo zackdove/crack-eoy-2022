@@ -50,6 +50,12 @@ body {
   transition: opacity 1s;
 }
 
+*{
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
 canvas {
   position: fixed;
   top: 0;

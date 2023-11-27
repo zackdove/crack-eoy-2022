@@ -88,7 +88,7 @@ export default class WebGLApp {
     this.#height = options.height
 
     // clamp pixel ratio for performance
-    this.maxPixelRatio = 2;
+    this.maxPixelRatio = 3;
     // clamp delta to avoid stepping anything too far forward
     this.maxDeltaTime = options.maxDeltaTime || 1 / 30
 

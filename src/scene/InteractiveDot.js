@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { Text } from 'troika-three-text'
 import assets from '../utils/AssetManager'
 import { CSS2DObject } from '../utils/CSS2DRenderer';
 
@@ -31,19 +30,7 @@ export default class InteractiveDot extends THREE.Group {
         // this.sphere = new THREE.Mesh(geometry, material);
         // material.color = new THREE.Color('green')
         // this.add(this.sphere)
-        const plusObject = new Text();
-        // this.add(plusObject);
-        this.plusObject = plusObject;
-        plusObject.handleRaycast = () => this.handleRaycast();
-        plusObject.color = 0x000000;
-        plusObject.anchorX = 'center';
-        plusObject.anchorY = 'middle';
-        plusObject.text = '+'
-        plusObject.font = 'assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff'
-        plusObject.fontSize = 0.325 * 1.6;
-        plusObject.position.y = +  0.325 * 0.1;
-        plusObject.visible = true;
-        plusObject.sync();
+      
         //  console.log(gridConfig.gems.textureKeys[index])
         const gemObject = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.3, 1, 1), new THREE.MeshBasicMaterial({
             map: assets.get(gridConfig.gems.textureKeys[index % gridConfig.gems.textureKeys.length]),
@@ -87,35 +74,28 @@ export default class InteractiveDot extends THREE.Group {
         // }
 
 
-        const textObject = new Text()
+        
         // this.add(textObject);
-        this.textObject = textObject;
+
         // Can remove this once dots = length
         this.index = index;
         this.isDot = true;
         this.project = gridConfig.projects[index];
         this.title = gridConfig.projects[index].title.split('');
         this.textureKey = gridConfig.projects[index].textureKey;
-        textObject.text = this.title.join('');
-        textObject.font = 'assets/fonts/PPNeueBit-Bold/PPNeueBit-Bold.woff'
-        textObject.fontSize = 0.325;
+       
         // textObject.curveRadius = 4
 
-        textObject.handleRaycast = () => this.handleRaycast();
+      
 
 
         this.layers.enable(1)
         if (webgl.isTouch) {
             // textObject.fontSize = 0.012;
-            this.textObject.layers.enable(1);
+          
         }
 
-        textObject.color = 0x000000;
-        textObject.anchorX = 'left';
-        textObject.anchorY = 'middle';
-        textObject.visible = false;
-        // textObject.position.z = 0.1;
-        textObject.position.x = 0.2;
+     
         // textObject.position.y = -0.01;
         if (webgl.isTouch) {
             this.tapToView = document.createElement('div');
@@ -136,11 +116,7 @@ export default class InteractiveDot extends THREE.Group {
         }
         // this.lookAt(webgl.camera.position)
         // Update the rendering:
-        textObject.sync(() => {
-
-
-            webgl.increaseTextsLoaded();
-        })
+      
 
         // webgl.scene.add(mesh);
     }

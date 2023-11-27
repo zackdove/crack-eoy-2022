@@ -79,7 +79,8 @@ export default class InteractiveDots extends THREE.Group {
             const sphere = new InteractiveDot(webgl, sphereGeo, material, i, whiteMat, this.css2dRenderer);
             sphere.position.copy(
                 getPosition(
-                    gridConfig.projects[i].position.x * this.webgl.width / 1512,
+                    // gridConfig.projects[i].position.x * this.webgl.width / 1512,
+                    gridConfig.projects[i].position.x,
                     gridConfig.projects[i].position.y,
                 )
             );
@@ -174,9 +175,8 @@ export default class InteractiveDots extends THREE.Group {
                         if (value === this.currentDot) {
                             value.visible = true;
                             value.div.classList.add('selected')
-                            value.textObject.visible = true;
-                            value.textObject.color = 0xffffff;
-                            value.plusObject.color = 0xffffff;
+                          
+
                             this.topBanner.classList.remove('show')
                             this.topBannerWhite.classList.add('show');
                             this.bottomBanner.classList.remove('show')
@@ -217,11 +217,11 @@ export default class InteractiveDots extends THREE.Group {
             }
             this.material.color = black;
             for (const [key, value] of Object.entries(this.webgl.scene.interactiveDots.idToObject)) {
-                if (value.textObject) {
-                    value.textObject.color = 0x000000;
+                if (true) {
+                  
                     value.div.classList.remove('selected')
                     value.div.classList.remove('mobileShow')
-                    value.plusObject.color = 0x000000;
+
                     this.menuButton.classList.remove('hide')
 
                     this.topBanner.classList.add('show')
@@ -231,7 +231,7 @@ export default class InteractiveDots extends THREE.Group {
 
                     if (!this.webgl.isTouch) {
                         value.visible = true;
-                        value.textObject.visible = false;
+                      
                         if (value.isBeingRaycast) {
                             value.isBeingRaycast = false;
                         }
