@@ -106,7 +106,7 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     }
   }
 
-  
+
 
   // use them from other components easily
   webgl.scene.rotationGroup = new THREE.Group();
@@ -129,6 +129,29 @@ assets.load({ renderer: webgl.renderer }).then(() => {
   webgl.scene.rotationGroup.add(webgl.scene.bgSphere)
 
   webgl.scene.add(webgl.scene.artistSphere)
+
+
+  const hoverables = [];
+  webgl.hoverables = hoverables
+  webgl.onPointerMove((event, { x, y }) => {
+    const coords = new THREE.Vector2().set(
+      (x / webgl.width) * 2 - 1,
+      (-y / webgl.height) * 2 + 1
+    )
+
+
+    const raycaster = new THREE.Raycaster()
+    raycaster.setFromCamera(coords, webgl.camera)
+
+    const hits = raycaster.intersectObjects(hoverables, true)
+    // console.log(hits.length > 0 ? `Hit ${hits[0].object.name}!` : 'No hit')
+    if (hits.length > 0) {
+      webgl.cursor = "pointer"
+     } else {
+      webgl.cursor = null
+     }
+  })
+
 
   webgl.scene.interactiveDots = new InteractiveDots(webgl, { widthSegments: params.grid.widthSegments, heightSegments: params.grid.verticalSegments })
   webgl.scene.rotationGroup.add(webgl.scene.interactiveDots)
@@ -165,6 +188,6 @@ assets.load({ renderer: webgl.renderer }).then(() => {
 
   // start animation loop
   console.log('render start')
-  webgl.start().resize({pixelRatio: 2})
-  
+  webgl.start().resize({ pixelRatio: 2 })
+
 })

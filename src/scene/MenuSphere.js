@@ -29,11 +29,33 @@ export default class MenuSphere extends THREE.Group {
         // later the group will be added to the scene
         this.add(this.sphere)
 
-
+        webgl.hoverables.push(this.sphere);
     }
 
     update(dt, time) {
     }
 
+    
+
+    onPointerDown(event, { x, y }) {
+
+     
+        const coords = new THREE.Vector2().set(
+            (x / this.webgl.width) * 2 - 1,
+            (-y / this.webgl.height) * 2 + 1
+        )
+      
+        const raycaster = new THREE.Raycaster()
+        raycaster.setFromCamera(coords, this.webgl.camera)
+        const hits = raycaster.intersectObject(this, true)
+        // console.log(hits.length > 0 ? `Hit ${hits[0].object.name}!` : 'No hit')
+
+        if (hits.length > 0) {
+
+
+
+            this.webgl.toggleMenu();
+        } 
+    }
 
 }

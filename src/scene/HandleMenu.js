@@ -1,6 +1,7 @@
 export default function initialiseMenu(webgl) {
 
 
+    const cardContainer = document.getElementById('cardContainer');
 
     const menuButton = document.getElementById('menuButton');
     function showMenu() {
@@ -17,6 +18,8 @@ export default function initialiseMenu(webgl) {
         cardContainerContainer.classList.remove('hidden')
         const menuButton = document.getElementById('menuButton');
         menuButton.classList.add('inMenu');
+        webgl.canvas.addEventListener('pointerdown', hideMenu)
+        cardContainer.addEventListener('pointerdown', hideMenu)
     }
 
     function hideMenu() {
@@ -27,6 +30,8 @@ export default function initialiseMenu(webgl) {
         cardContainerContainer.classList.add('hidden')
         const menuButton = document.getElementById('menuButton');
         menuButton.classList.remove('inMenu');
+        webgl.canvas.removeEventListener('pointerdown', hideMenu)
+        cardContainer.removeEventListener('pointerdown', hideMenu)
     }
 
 
@@ -41,19 +46,42 @@ export default function initialiseMenu(webgl) {
 
     menuButton.onclick = toggleMenu;
 
-    webgl.canvas.addEventListener('click', hideMenu)
+    webgl.toggleMenu = toggleMenu;
+
+    const cardSources = [
+        "/assets/images/cards/pink.svg",
+        "/assets/images/cards/purple.svg",
+        "/assets/images/cards/green.svg",
+        "/assets/images/cards/yellow.svg",
+        "/assets/images/cards/red.svg",
+        "/assets/images/cards/grey.svg",
+    ]
 
 
-    const cardContainer = document.getElementById('cardContainer');
     for (let i = 0; i < gridConfig.projects.length; i++) {
         const card = document.createElement('div');
         card.classList.add('card');
+
+       
+       
+        
         if (!gridConfig.projects[i].enabled) card.classList.add('disabled');
-        card.innerHTML = gridConfig.projects[i].title;
+      
         card.onclick = () => {
             window.location.href = gridConfig.projects[i].link
         }
         cardContainer.appendChild(card)
+       
+
+        cardInner = document.createElement('div');
+        card.appendChild(cardInner);
+        cardInner.classList.add('cardInner')
+        cardInner.innerHTML = gridConfig.projects[i].title;
+
+        const cardBg = document.createElement('img');
+        cardBg.src = cardSources[i %cardSources.length ]
+        cardBg.classList.add('cardBg')
+        cardInner.appendChild(cardBg)
     }
 
     const topBanner = document.querySelector('#topBanner>.bannerInner');

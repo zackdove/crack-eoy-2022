@@ -22,6 +22,7 @@ export default class InteractiveDots extends THREE.Group {
         this.css2dRenderer.setSize(webgl.width, webgl.height);
         document.getElementById('css2dContainer').appendChild(this.css2dRenderer.domElement);
 
+        webgl.hoverables.push(this);
         const radius = 4;
         const widthSegments = options.widthSegments;
         const heightSegments = options.heightSegments;
@@ -78,6 +79,11 @@ export default class InteractiveDots extends THREE.Group {
             // console.log(id)
             const sphere = new InteractiveDot(webgl, sphereGeo, material, i, whiteMat, this.css2dRenderer);
             sphere.position.copy(
+                this.webgl.isTouch ?  getPosition(
+                    // gridConfig.projects[i].position.x * this.webgl.width / 1512,
+                    gridConfig.projects[i].mobilePosition.x,
+                    gridConfig.projects[i].mobilePosition.y,
+                ) :
                 getPosition(
                     // gridConfig.projects[i].position.x * this.webgl.width / 1512,
                     gridConfig.projects[i].position.x,
@@ -112,38 +118,13 @@ export default class InteractiveDots extends THREE.Group {
     }
 
     handleMove(event, { x, y }) {
-        this.pickPosition.x = x;
-        this.pickPosition.y = y;
+      
         const coords = new THREE.Vector2().set(
             (x / this.webgl.width) * 2 - 1,
             (-y / this.webgl.height) * 2 + 1
         )
-        // console.log(coords)
-        // coords.x *= this.webgl.height / this.webgl.width
-        // coords.y *= this.webgl.width / this.webgl.height
-
-
-        const distortion = new THREE.Vector2(-0.24, -0.15);
-        const principalPoint = new THREE.Vector2(0, 0);
-        const focalLength = new THREE.Vector2(1, 1);
-        const skew = 0;
-        const coordsDot = coords.dot(coords);
-        distortion.multiplyScalar(coordsDot);
-        distortion.addScalar(1);
-        distortion.multiply(coords)
-        const Xd = new THREE.Vector3(distortion.x, distortion.y, 1.0);
-        const KK = new THREE.Matrix3(
-            focalLength.x, 0.0, 0.0,
-            skew * focalLength.x, focalLength.y, 0,
-            principalPoint.x, principalPoint.y, 1.0
-        )
-        KK.transpose();
-        Xd.applyMatrix3(KK)
-        // console.log(Xd)
-        // Xd.x *= this.webgl.width / this.webgl.height
-        // Xd.x *= this.webgl.height / this.webgl.width
-        // Xd.y *= this.webgl.height / this.webgl.width
-        const newCoords = new THREE.Vector2(Xd.x, Xd.y)
+    
+      
         const raycaster = new THREE.Raycaster()
         raycaster.setFromCamera(coords, this.webgl.camera)
         raycaster.layers.set(1);
@@ -154,11 +135,7 @@ export default class InteractiveDots extends THREE.Group {
             hits[0].object.handleRaycast();
             this.currentDot = hits[0].object;
             if (!this.currentDot.isDot) this.currentDot = this.currentDot.parent
-            if (this.currentDot.enabled) {
-                document.body.style.cursor = 'pointer'
-            } else {
-                document.body.style.cursor = 'auto'
-            }
+           
 
             if (!this.showTimeout) {
 
@@ -242,7 +219,6 @@ export default class InteractiveDots extends THREE.Group {
                     }
                 }
             }
-            document.body.style.cursor = 'default'
             this.webgl.scene.artistSphere.visible = false;
         }
     }

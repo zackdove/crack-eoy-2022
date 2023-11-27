@@ -132,7 +132,8 @@ export default class InteractiveDot extends THREE.Group {
     handleClick() {
         console.log('dot clicked, navigating to ' + gridConfig.projects[this.index].link)
         if (this.enabled) {
-            window.location.href = gridConfig.projects[this.index].link
+            window.open(gridConfig.projects[this.index].link, '_blank').focus();
+
         }
     }
 

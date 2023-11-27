@@ -36,7 +36,7 @@ export default class ControlService extends THREE.Group {
           };
     }
     onPointerDown(event, { x, y }) {
-        console.log('pointer down')
+
         if (this.webgl.isTouch) {
             this.prevMovement.x = null;
             this.prevMovement.y = null;
