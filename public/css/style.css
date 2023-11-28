@@ -50,10 +50,13 @@ body {
   transition: opacity 1s;
 }
 
-*{
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+* {
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
 }
 
 canvas {
@@ -98,6 +101,7 @@ canvas {
 
 .menuDot .title {
   font-size: calc(40px * 1/1.4);
+  letter-spacing: -1px;
   position: absolute;
   width: max-content;
   pointer-events: none;
@@ -111,17 +115,18 @@ canvas {
   position: absolute;
   width: max-content;
   font-size: 23px;
+  letter-spacing: -0.6px;
   top: 19px;
   left: 30px;
   visibility: hidden;
 }
 
-.menuDot.mobileShow{
+.menuDot.mobileShow {
   color: #fff;
 }
 
 
-.menuDot.mobileShow .title{
+.menuDot.mobileShow .title {
   color: #fff;
   visibility: initial;
 }
@@ -151,7 +156,7 @@ canvas {
   color: #000;
 }
 
-.menuDot.mobile .title{
+.menuDot.mobile .title {
   visibility: initial;
 }
 
@@ -173,13 +178,15 @@ canvas {
   font-smooth: never;
   /* animation-play-state: paused; */
 }
-.bannerInner.bannerInnerWhite{
+
+.bannerInner.bannerInnerWhite {
   position: absolute;
 }
 
-.bannerInner > img{
+.bannerInner>img {
   /* width: 100vw; */
   height: 86px;
+  float: left;
 }
 
 .b .banner span {}
@@ -199,14 +206,16 @@ canvas {
   z-index: 99998;
 }
 
-#topBannerWhite{
+#topBannerWhite {
   top: 0;
   z-index: 99999;
 }
-.banner{
+
+.banner {
   display: none;
 }
-.banner.show{
+
+.banner.show {
   display: block;
 }
 
@@ -216,6 +225,7 @@ canvas {
   bottom: -10px;
   z-index: 99998;
 }
+
 #bottomBannerWhite {
   bottom: -10px;
   z-index: 99999;
@@ -232,7 +242,7 @@ canvas {
   top: 0;
   left: 0;
   z-index: 9999;
-
+  /* pointer-events: none; */
 }
 
 
@@ -241,6 +251,7 @@ canvas {
   height: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  /* pointer-events: none; */
   overflow-y: hidden;
   display: flex;
   flex-wrap: nowrap;
@@ -276,6 +287,7 @@ a {
   /* margin: 10px; */
   flex: 0 0 auto;
   font-size: 55px;
+  letter-spacing: -2px;
   line-height: 45px;
   font-family: 'Times MT Condensed';
   /* fake gap */
@@ -287,16 +299,18 @@ a {
   text-decoration: none;
   cursor: pointer;
   position: relative;
+  pointer-events: all;
 }
 
 
-.cardInner{
+.cardInner {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-.cardBg{
+
+.cardBg {
   position: absolute;
   top: 0;
   left: 0;
@@ -307,13 +321,22 @@ a {
 .card.disabled {
 
 
- 
-  cursor: auto;
+  opacity: 0.6;
+  /* pointer-events: none; */
 }
 
-.card.disabled:hover {
+#cardContainerContainer.hidden #cardContainerBg{
+  pointer-events: none;
+}
 
-  color: #C8C8C8;
+#cardContainerBg{
+  position: fixed;
+  pointer-events: all;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
 }
 
 #cardContainer.hidden .card {
@@ -411,6 +434,7 @@ a {
     font-size: calc(50px * 1/1.4);
     top: 15px;
     left: 40px;
+    letter-spacing: -1.5px;
   }
 
   .menuDot {
@@ -446,7 +470,7 @@ a {
 
 
   .card {
-    
+
     transition: background-color 0.3s, color 0.3s, opacity 0.3s, transform 0.4s;
   }
 
@@ -454,7 +478,7 @@ a {
     opacity: 0;
   }
 
-  .cardInner{
+  .cardInner {
     position: relative;
     height: 100%;
     width: 100%;
@@ -463,9 +487,9 @@ a {
 
   .card:hover .cardInner {
     /* color: #FF77F1; */
-  
+
     /* background-color: #ECFF77; */
-   
+
     transform: scale(0.9);
   }
 

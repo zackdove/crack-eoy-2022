@@ -5,16 +5,17 @@ const gridConfig = {
         textures: [
 
             "/assets/images/gems/tear.png",
-            "/assets/images/postits/orange.png",
+            "/assets/images/gems/star.png",
             "/assets/images/postits/green.png",
             "/assets/images/postits/pink.png",
             "/assets/images/gems/heart.png",
           
             "/assets/images/postits/purple.png",
-            "/assets/images/gems/star.png",
+           
 
 
           
+            "/assets/images/postits/orange.png",
             
            
             "/assets/images/gems/yellow.png",
@@ -34,10 +35,10 @@ const gridConfig = {
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
                 x: -0.25,
-                y: 0.75,
+                y: 1.25,
             },
             mobilePosition:{
-                x: -0.95,
+                x: -1.25,
                 y: 0.75,
             },
             link: '/examplelink',
@@ -55,7 +56,7 @@ const gridConfig = {
                 y: -1.5,
             },
             mobilePosition:{
-                x: 0.4,
+                x: 0.6,
                 y: -1.45,
             },
             textureType: 'video',
@@ -93,11 +94,11 @@ const gridConfig = {
             title: 'Top 50 Albums 2023',
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
-                x: -2,
+                x: -2.4,
                 y: 0.5,
             },
             mobilePosition:{
-                x: 0.25,
+                x: 0.85,
                 y: 1.25,
             },
             textureType: 'video',
@@ -115,7 +116,7 @@ const gridConfig = {
             coordinates: `41°24'12.2" N 2°10'26.5"`,
             position: {
                 x: -2,
-                y: -2.25,
+                y: -2.55,
             },
             mobilePosition:{
                 x: -0.25,
@@ -139,8 +140,8 @@ const gridConfig = {
                 y: 1.75,
             },
             mobilePosition:{
-                x: -1.25,
-                y: -2.75,
+                x: -1.65,
+                y: -2.55,
             },
             textureType: 'video',
             textureSrc: '/assets/videos/crack_demo.mp4#t=0.5#t=0.5',
